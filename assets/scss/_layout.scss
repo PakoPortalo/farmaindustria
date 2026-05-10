@@ -10,6 +10,8 @@
 .main {
   min-height: 60vh;
   padding-block: $space-8;
+
+  &--home { padding-block: 0; min-height: auto; }
 }
 
 .site-header {

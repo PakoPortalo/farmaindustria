@@ -1,6 +1,7 @@
 @use 'tokens' as *;
+@use 'fonts';
 @use 'reset';
 @use 'layout';
 
 // Bloques (importar aquí cada style.scss de bloque)
-// @use '../../blocks/hero/style';
+@use '../../blocks/hero-ensayos/style' as hero-ensayos;

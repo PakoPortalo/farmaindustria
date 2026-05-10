@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "fi/hero-ensayos",
+  "title": "Hero +ensayos",
+  "category": "design",
+  "icon": "format-quote",
+  "description": "Hero principal del home con logo +ensayos y claim de 3 líneas.",
+  "keywords": ["hero", "ensayos", "intro"],
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "anchor": true
+  },
+  "render": "file:./render.php",
+  "textdomain": "farmaindustria"
+}
