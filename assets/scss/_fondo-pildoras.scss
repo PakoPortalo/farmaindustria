@@ -1,0 +1,119 @@
+@use 'tokens' as *;
+
+// Fondo decorativo "Pildoras" — partial compartido (parts/fondo-pildoras.php).
+// Spec: Figma Cels component (1:682). Bg rosa + cápsulas rotadas + 3 blobs + ruido.
+// Sticky: siempre visible durante el scroll del módulo (sin tiles ni cortes).
+
+.fondo-pildoras {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  margin-bottom: -100vh;
+  pointer-events: none;
+  overflow: hidden;
+  background: #f9b5cb;
+  z-index: 0;
+
+  &__base {
+    position: absolute;
+    inset: 0;
+    background: #f9b5cb;
+  }
+
+  &__blob {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    will-change: transform;
+
+    &--1 { left: -111px; top: 679px;  width: 1653px; height: auto;
+      animation: fondo-pildoras-blob-a 36s ease-in-out infinite; }
+    &--2 { left: 230px;  top: -264px; width: 1362px; height: auto;
+      animation: fondo-pildoras-blob-b 42s ease-in-out -12s infinite; }
+    &--3 { left: -618px; top: -479px; width: 1459px; height: auto; transform: rotate(120deg);
+      animation: fondo-pildoras-blob-c 46s ease-in-out -18s infinite; }
+  }
+
+  // Cápsula/pildora rotada (~42x199, full radius). Drift sutil.
+  &__pildora {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: 41.6px;
+    height: 199px;
+    background: #fba99e;
+    border-radius: 100vmax;
+    transform: rotate(var(--rot, 0deg));
+    transform-origin: 50% 50%;
+    pointer-events: none;
+    will-change: transform;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-delay: calc(var(--i, 0) * -0.34s);
+  }
+
+  &__pildora:nth-child(6n + 4) { animation-name: pildora-drift-a; animation-duration: 11s; }
+  &__pildora:nth-child(6n + 5) { animation-name: pildora-drift-b; animation-duration: 13s; }
+  &__pildora:nth-child(6n + 6) { animation-name: pildora-drift-c; animation-duration: 14s; }
+  &__pildora:nth-child(6n + 7) { animation-name: pildora-drift-d; animation-duration: 12s; }
+  &__pildora:nth-child(6n + 8) { animation-name: pildora-drift-e; animation-duration: 15s; }
+  &__pildora:nth-child(6n + 9) { animation-name: pildora-drift-f; animation-duration: 10s; }
+
+  &__mask {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url('../img/hero/bolas/noise-mask.webp');
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: overlay;
+    opacity: 0.18;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__pildora, &__blob { animation: none; }
+  }
+}
+
+// Drift: rotación base + traslación pequeña + leve cambio de rotación (los keyframes
+// usan var(--rot) para preservar la rotación individual de cada pildora).
+@keyframes pildora-drift-a {
+  0%, 100% { transform: rotate(var(--rot, 0deg)) translate(0, 0); }
+  50%      { transform: rotate(calc(var(--rot, 0deg) + 6deg)) translate(18px, -22px); }
+}
+@keyframes pildora-drift-b {
+  0%, 100% { transform: rotate(var(--rot, 0deg)) translate(0, 0); }
+  50%      { transform: rotate(calc(var(--rot, 0deg) - 5deg)) translate(-20px, 24px); }
+}
+@keyframes pildora-drift-c {
+  0%, 100% { transform: rotate(var(--rot, 0deg)) translate(0, 0); }
+  50%      { transform: rotate(calc(var(--rot, 0deg) + 4deg)) translate(22px, 18px); }
+}
+@keyframes pildora-drift-d {
+  0%, 100% { transform: rotate(var(--rot, 0deg)) translate(0, 0); }
+  50%      { transform: rotate(calc(var(--rot, 0deg) - 7deg)) translate(-16px, -26px); }
+}
+@keyframes pildora-drift-e {
+  0%, 100% { transform: rotate(var(--rot, 0deg)) translate(0, 0); }
+  50%      { transform: rotate(calc(var(--rot, 0deg) + 5deg)) translate(26px, 14px); }
+}
+@keyframes pildora-drift-f {
+  0%, 100% { transform: rotate(var(--rot, 0deg)) translate(0, 0); }
+  50%      { transform: rotate(calc(var(--rot, 0deg) - 4deg)) translate(-14px, -20px); }
+}
+
+@keyframes fondo-pildoras-blob-a {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(40px, -50px); }
+}
+@keyframes fondo-pildoras-blob-b {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-50px, 60px); }
+}
+@keyframes fondo-pildoras-blob-c {
+  0%, 100% { transform: rotate(120deg) translate(0, 0); }
+  50%      { transform: rotate(126deg) translate(30px, -40px); }
+}

@@ -20,11 +20,28 @@
   isolation: isolate;
   overflow: hidden;
 
+  > .fondo-bolas { z-index: 0; }
+
   > .hero-ensayos,
-  > .hero-secundario {
+  > .hero-secundario,
+  > .intro-compromiso {
     position: relative;
     z-index: 1;
-    overflow: visible;        // overflow vive en el wrapper
+    overflow: visible;
+    background: transparent;
+  }
+}
+
+// Stack del módulo innovación con fondo pildoras compartido.
+.home-innovacion-stack {
+  position: relative;
+  isolation: isolate;
+
+  > .fondo-pildoras { z-index: 0; }
+
+  > .innovacion-stack {
+    position: relative;
+    z-index: 1;
     background: transparent;
   }
 }

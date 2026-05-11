@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "fi/cinta-ensayos",
+  "title": "Cinta ensayos (marquee)",
+  "category": "design",
+  "icon": "controls-repeat",
+  "description": "Cinta horizontal infinita con logo +ensayos y texto \"es seguir avanzando. es ir a más.\".",
+  "keywords": ["cinta", "marquee", "ensayos"],
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "anchor": true
+  },
+  "render": "file:./render.php",
+  "textdomain": "farmaindustria"
+}

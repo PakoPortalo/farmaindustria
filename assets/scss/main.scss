@@ -3,8 +3,11 @@
 @use 'reset';
 @use 'layout';
 @use 'fondo-bolas';
+@use 'fondo-pildoras';
 
 // Bloques (importar aquí cada style.scss de bloque)
 @use '../../blocks/hero-ensayos/style' as hero-ensayos;
 @use '../../blocks/hero-secundario/style' as hero-secundario;
 @use '../../blocks/intro-compromiso/style' as intro-compromiso;
+@use '../../blocks/cinta-ensayos/style' as cinta-ensayos;
+@use '../../blocks/innovacion-stack/style' as innovacion-stack;

@@ -1,0 +1,85 @@
+@use '../../assets/scss/tokens' as *;
+
+// Cinta ensayos — Figma 116:2014 (1440x233).
+// Bg blanco, 2 líneas horizontales (y:10, y:223 = 10px desde top/bottom),
+// scroll horizontal infinito.
+
+.cinta-ensayos {
+  position: relative;
+  width: 100%;
+  height: calc(233 / 1440 * 100vw);
+  max-height: 233px;
+  min-height: 120px;
+  background: #fff;
+  overflow: hidden;
+  z-index: 2;
+
+  &__track {
+    display: flex;
+    width: max-content;
+    height: 100%;
+    align-items: center;
+    animation: cinta-scroll 10s linear infinite;
+    will-change: transform;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: calc(20 / 1440 * 100vw);
+    padding-right: calc(20 / 1440 * 100vw);
+  }
+
+  // Logo: alto = font-size del texto (120) para que visualmente coincidan.
+  // Aspect original 482/93 = 5.18 → ancho 622 a alto 120.
+  &__logo {
+    width: calc(622 / 1440 * 100vw);
+    height: calc(120 / 1440 * 100vw);
+    max-width: 622px;
+    max-height: 100px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+    transform: translateY(calc(27 / 1440 * 100vw));
+  }
+
+  &__text {
+    font-family: $font-family-base;
+    font-weight: $fw-regular;
+    font-size: calc(120 / 1440 * 100vw);
+    line-height: 1;
+    letter-spacing: calc(-2 / 1440 * 100vw);
+    color: #000;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: $bp-2xl) {
+    &__text { font-size: 120px; letter-spacing: -2px; }
+    &__item { gap: 20px; padding-right: 20px; }
+    &__logo { width: 622px; height: 120px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__track { animation-duration: 120s; } // mucho más lento, no del todo quieto para que se siga leyendo
+  }
+}
+
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+@keyframes cinta-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}

@@ -1,0 +1,220 @@
+@use '../../assets/scss/tokens' as *;
+
+// Innovación stack — Figma 116:2018 + 116:2015 (Cels).
+// Sección scroll-driven: height = states × 100vh; sticky pin interno.
+// Vars CSS asignadas por script.js: --p (0-1 global), --i (estado actual), --sub (0-1 dentro de estado).
+
+.innovacion-stack {
+  position: relative;
+  width: 100%;
+  height: calc(var(--states, 6) * 100vh);
+
+  &__sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    width: 100%;
+    --p: 0;
+    --i: 0;
+    --sub: 0;
+  }
+
+  // === Fotos (z-index bajo, detrás de palabra+caption) ===
+  // foto-1 cortada por borde superior, foto-2 cortada por borde inferior.
+  &__photos {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &__photo {
+    position: absolute;
+    opacity: 0;
+    transition: opacity .55s ease;
+    aspect-ratio: 936 / 1166;
+    overflow: hidden;
+    will-change: opacity;
+    // Mask en el wrapper (no en la <img>) para poder mover la imagen dentro del recorte.
+    -webkit-mask-image: url('../../assets/img/hero-secundario/recorte-mask.webp');
+            mask-image: url('../../assets/img/hero-secundario/recorte-mask.webp');
+    -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-mode: luminance;
+            mask-mode: luminance;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      // --shift-y mueve la imagen DENTRO del recorte (mask se queda fijo).
+      // positivo = baja la foto (revela contenido superior).
+      // negativo = sube la foto (revela contenido inferior).
+      transform: translateY(var(--shift-y, 0));
+    }
+
+    // foto-1 (hombre + hijos) → IZQUIERDA, cortada agresivamente por arriba.
+    &[data-i="0"],
+    &[data-i="2"],
+    &[data-i="4"] {
+      top: -42vh;
+      left: 4vw;
+      width: clamp(320px, 36vw, 540px);
+      --shift-y: 12%;
+    }
+
+    // foto-2 (chica) → DERECHA, cortada agresivamente por abajo.
+    &[data-i="1"],
+    &[data-i="3"],
+    &[data-i="5"] {
+      bottom: -28vh;
+      right: 4vw;
+      width: clamp(280px, 32vw, 480px);
+      --shift-y: 0%;
+    }
+
+    &.is-active { opacity: 1; }
+    &.is-prev   { opacity: 0.5; }
+  }
+
+  // === Centro (palabras + captions, z-index alto, encima de fotos) ===
+  &__center {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  // Palabras: full-width, alineadas según estado (izq cuando foto-1, der cuando foto-2).
+  &__words {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    padding-inline: 4vw;
+    height: calc(190 / 1440 * 100vw);
+    max-height: 190px;
+  }
+
+  &__word {
+    position: absolute;
+    left: 4vw;
+    right: 4vw;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-family-pixel;
+    font-weight: 700;
+    font-size: calc(190 / 1440 * 100vw);
+    line-height: 1;
+    letter-spacing: calc(-3.57 / 1440 * 100vw);
+    color: #000;
+    white-space: nowrap;
+    clip-path: inset(100% 0 0 0); // cortinilla bottom→top
+    transition: clip-path .65s cubic-bezier(.45,.1,.2,1);
+    will-change: clip-path;
+    pointer-events: none;
+
+    &.is-active { clip-path: inset(0); }
+  }
+
+  // Captions: una visible (la activa). Posición alterna: lado opuesto a la foto.
+  // Foto izq (pares) → caption derecha. Foto der (impares) → caption izquierda.
+  &__captions {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  &__caption {
+    position: absolute;
+    width: clamp(280px, 24vw, 400px);
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $fw-medium;
+    font-size: calc(22 / 1440 * 100vw);
+    line-height: 1.3;
+    letter-spacing: calc(-0.5 / 1440 * 100vw);
+    color: #000;
+    opacity: 0;
+    transition: opacity .5s ease;
+    transition-delay: .15s;
+    text-align: left;
+
+    // Posición específica por palabra
+    &[data-i="0"] { top: 64%; right: 4vw; }                                            // +Innovación → derecha
+    &[data-i="1"] { top: 64%; left: 4vw; }                                             // +Calidad → izquierda
+    &[data-i="2"] { top: 8vh; right: 4vw; }                                            // +Oportunidades → top-right
+    &[data-i="3"] { top: 64%; left: 50%; transform: translateX(-50%); text-align: center; }  // +Tratamientos → centro debajo
+    &[data-i="4"] { bottom: 8vh; left: 4vw; }                                          // +Liderazgo → abajo-izquierda
+    &[data-i="5"] { top: 25%; left: 50%; transform: translateX(-50%); text-align: center; }  // +Talento → arriba centro
+
+    &.is-active { opacity: 1; }
+  }
+
+  // Caps en max
+  @media (min-width: $bp-2xl) {
+    &__words { height: 190px; }
+    &__word { font-size: 190px; letter-spacing: -3.57px; }
+    &__caption { font-size: 22px; letter-spacing: -0.5px; }
+  }
+
+  // === Mobile: degrada a stack vertical sin scroll-driven ===
+  @media (max-width: $bp-md) {
+    height: auto;
+
+    &__sticky {
+      position: static;
+      height: auto;
+      overflow: visible;
+    }
+
+    &__photos, &__center { position: static; }
+
+    &__photo {
+      position: relative;
+      opacity: 1;
+      transform: none;
+      padding: $space-6 $space-5;
+      align-items: center;
+      justify-content: center;
+      img { width: 70vw; max-width: 360px; }
+    }
+
+    &__words { height: auto; margin-top: $space-6; }
+    &__word {
+      position: relative;
+      clip-path: inset(0);
+      font-size: clamp(2.5rem, 12vw, 4.5rem);
+      letter-spacing: -0.04em;
+      white-space: normal;
+      display: block;
+      transform: none;
+      margin-bottom: $space-4;
+    }
+
+    &__captions { margin-top: $space-4; min-height: auto; }
+    &__caption {
+      position: relative;
+      opacity: 1;
+      transform: none;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      margin-bottom: $space-6;
+    }
+  }
+
+  // Motion reducida
+  @media (prefers-reduced-motion: reduce) {
+    &__word, &__photo, &__caption {
+      transition: none !important;
+    }
+  }
+}

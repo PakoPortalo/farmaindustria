@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "fi/innovacion-stack",
+  "title": "Innovación stack (scroll)",
+  "category": "design",
+  "icon": "lightbulb",
+  "description": "Sección scroll-driven con 6 palabras y captions que se revelan progresivamente, y 2 fotos rotando con recorte label.",
+  "keywords": ["scroll", "innovacion", "storytelling"],
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "anchor": true
+  },
+  "render": "file:./render.php",
+  "viewScript": "file:./script.js",
+  "textdomain": "farmaindustria"
+}

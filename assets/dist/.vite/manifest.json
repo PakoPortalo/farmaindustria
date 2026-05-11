@@ -1,4 +1,40 @@
 {
+  "assets/fonts/offbit/offbit-101-bold.woff2": {
+    "file": "fonts/offbit-101-bold.Da1i9TCM.woff2",
+    "src": "assets/fonts/offbit/offbit-101-bold.woff2"
+  },
+  "assets/fonts/pixelify-sans/pixelify-400-latin-ext.woff2": {
+    "file": "fonts/pixelify-400-latin-ext.BE692HKO.woff2",
+    "src": "assets/fonts/pixelify-sans/pixelify-400-latin-ext.woff2"
+  },
+  "assets/fonts/pixelify-sans/pixelify-400-latin.woff2": {
+    "file": "fonts/pixelify-400-latin.D1rQrCZP.woff2",
+    "src": "assets/fonts/pixelify-sans/pixelify-400-latin.woff2"
+  },
+  "assets/fonts/pixelify-sans/pixelify-500-latin-ext.woff2": {
+    "file": "fonts/pixelify-400-latin-ext.BE692HKO.woff2",
+    "src": "assets/fonts/pixelify-sans/pixelify-400-latin-ext.woff2"
+  },
+  "assets/fonts/pixelify-sans/pixelify-500-latin.woff2": {
+    "file": "fonts/pixelify-400-latin.D1rQrCZP.woff2",
+    "src": "assets/fonts/pixelify-sans/pixelify-400-latin.woff2"
+  },
+  "assets/fonts/pixelify-sans/pixelify-600-latin-ext.woff2": {
+    "file": "fonts/pixelify-400-latin-ext.BE692HKO.woff2",
+    "src": "assets/fonts/pixelify-sans/pixelify-400-latin-ext.woff2"
+  },
+  "assets/fonts/pixelify-sans/pixelify-600-latin.woff2": {
+    "file": "fonts/pixelify-400-latin.D1rQrCZP.woff2",
+    "src": "assets/fonts/pixelify-sans/pixelify-400-latin.woff2"
+  },
+  "assets/fonts/pixelify-sans/pixelify-700-latin-ext.woff2": {
+    "file": "fonts/pixelify-400-latin-ext.BE692HKO.woff2",
+    "src": "assets/fonts/pixelify-sans/pixelify-400-latin-ext.woff2"
+  },
+  "assets/fonts/pixelify-sans/pixelify-700-latin.woff2": {
+    "file": "fonts/pixelify-400-latin.D1rQrCZP.woff2",
+    "src": "assets/fonts/pixelify-sans/pixelify-400-latin.woff2"
+  },
   "assets/fonts/switzer/switzer-400.woff2": {
     "file": "fonts/switzer-400.BxEtgLLb.woff2",
     "src": "assets/fonts/switzer/switzer-400.woff2"
@@ -26,7 +62,7 @@
     "isEntry": true
   },
   "assets/scss/main.scss": {
-    "file": "css/styles.CCYmpCRG.css",
+    "file": "css/styles.DjOvnFC3.css",
     "src": "assets/scss/main.scss",
     "isEntry": true
   }

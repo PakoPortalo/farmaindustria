@@ -25,9 +25,29 @@ get_header();
     </div>
 
     <?php
+    $secondary_blocks = [
+        ['blockName' => 'fi/cinta-ensayos', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
+    ];
+    foreach ($secondary_blocks as $block) {
+        echo render_block($block);
+    }
+    ?>
+
+    <div class="home-innovacion-stack">
+        <?php
+        get_template_part('parts/fondo-pildoras');
+        $innovacion_blocks = [
+            ['blockName' => 'fi/innovacion-stack', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
+        ];
+        foreach ($innovacion_blocks as $block) {
+            echo render_block($block);
+        }
+        ?>
+    </div>
+
+    <?php
     // TODO: añadir aquí el resto de bloques del home conforme se monten:
-    // quote, banner-intro, cels-testimonios, fondo3, espana-lider,
-    // claves-cards, claves-expandido, clave1, banners-cta.
+    // fondo3, espana-lider, claves-cards, claves-expandido, clave1, banners-cta.
     ?>
 </main>
 
