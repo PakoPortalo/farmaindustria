@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "fi/intro-compromiso",
+  "title": "Intro compromiso",
+  "category": "design",
+  "icon": "editor-textcolor",
+  "description": "Heading \"+Ensayos es un compromiso...\" + párrafo descriptivo \"Un espacio para...\".",
+  "keywords": ["intro", "compromiso", "texto"],
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "anchor": true
+  },
+  "render": "file:./render.php",
+  "textdomain": "farmaindustria"
+}

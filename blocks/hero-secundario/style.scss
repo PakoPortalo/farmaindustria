@@ -1,16 +1,21 @@
 @use '../../assets/scss/tokens' as *;
 
 // Hero secundario — Figma 116:2011 (1440x874).
-// .trigger es el recorte: tiene el mask-image fijo y el área de hover.
-// La <img> dentro hace scale(1.08) on hover. "VER VÍDEO" en CTA.
+// Layout: sección 1440x874 con bg transparente (heredando .home-hero-stack).
+// Trigger = bounding box del recorte (1285x536 a top:169 centrado).
+// Recorte: mask-image (luminance, recorte-mask.webp) sobre wrapper interior;
+// la <img> dentro hace scale(1.08) on hover.
+// "+" overlay encima del recorte, posición fija (no escala).
 
 .hero-secundario {
   position: relative;
   width: 100%;
-  max-width: $design-width;
   margin-inline: auto;
+  margin-top: calc(-249 / 1440 * 100vw); // solape con hero-ensayos (Figma y:591 vs y:840)
   aspect-ratio: 1440 / 874;
-  overflow: hidden;
+
+  @media (min-width: $bp-2xl) { margin-top: -249px; }
+  @media (max-width: $bp-md)  { margin-top: 0; }
 
   &__trigger {
     position: absolute;
@@ -20,23 +25,35 @@
     aspect-ratio: 1285 / 536;
     transform: translateX(-50%);
     display: block;
-    overflow: hidden;
-    cursor: pointer;
     text-decoration: none;
+    cursor: pointer;
     color: #fff;
-    -webkit-mask-image: url('../../assets/img/hero-secundario/recorte-mask.webp');
-            mask-image: url('../../assets/img/hero-secundario/recorte-mask.webp');
-    -webkit-mask-size: 100% 100%;
-            mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
-    -webkit-mask-mode: luminance;
-            mask-mode: luminance;
 
     &:focus-visible {
       outline: 2px solid #fff;
       outline-offset: 4px;
     }
+  }
+
+  &__recorte {
+    position: absolute;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+    // Recorte label MENOS "+": el "+" se vuelve agujero real,
+    // foto se corta ahí, fondo-bolas se ve a través.
+    -webkit-mask-image: url('../../assets/img/hero-secundario/recorte-mask.webp'), url('../../assets/img/hero-secundario/plus.svg');
+            mask-image: url('../../assets/img/hero-secundario/recorte-mask.webp'), url('../../assets/img/hero-secundario/plus.svg');
+    -webkit-mask-size: 100% 100%, 100% 100%;
+            mask-size: 100% 100%, 100% 100%;
+    -webkit-mask-position: 0 0, 0 0;
+            mask-position: 0 0, 0 0;
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-mode: luminance, alpha;
+            mask-mode: luminance, alpha;
+    -webkit-mask-composite: source-out;
+            mask-composite: subtract;
   }
 
   &__img {
@@ -51,9 +68,8 @@
 
   &__cta {
     position: absolute;
-    z-index: 2;
-    top: calc(256 / 536 * 100%);    // 425-169 = 256 desde el top del recorte
-    left: calc(683 / 1285 * 100%);  // CTA en x:761 del frame; recorte left:77.5 → 683/1285
+    top: calc(256 / 536 * 100%);
+    left: calc(683 / 1285 * 100%);
     transform: translateX(-100%);
     font-family: $font-family-base;
     font-weight: $fw-medium;
@@ -74,32 +90,16 @@
   &__trigger:hover &__cta,
   &__trigger:focus-visible &__cta { opacity: 1; }
 
+  @media (prefers-reduced-motion: reduce) {
+    &__img { transition: none; }
+    &__trigger:hover &__img { transform: none; }
+  }
+
   @media (max-width: $bp-md) {
     aspect-ratio: auto;
     padding-block: $space-6;
 
-    &__trigger {
-      position: static;
-      transform: none;
-      width: 100%;
-      left: auto;
-      top: auto;
-    }
-
-    &__cta {
-      position: static;
-      transform: none;
-      opacity: 1;
-      margin-top: $space-3;
-      text-align: center;
-    }
-
-    &__trigger:hover &__img,
-    &__trigger:focus-visible &__img { transform: none; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    &__img { transition: none; }
-    &__trigger:hover &__img { transform: none; }
+    &__trigger { position: static; transform: none; width: 100%; aspect-ratio: 1285 / 536; }
+    &__cta { position: static; transform: none; opacity: 1; margin-top: $space-3; text-align: center; }
   }
 }

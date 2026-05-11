@@ -15,7 +15,8 @@ get_header();
         <?php
         $hero_blocks = [
             ['blockName' => 'fi/hero-ensayos',    'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
-            ['blockName' => 'fi/hero-secundario', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
+            ['blockName' => 'fi/hero-secundario',  'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
+            ['blockName' => 'fi/intro-compromiso', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
         ];
         foreach ($hero_blocks as $block) {
             echo render_block($block);
