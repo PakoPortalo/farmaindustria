@@ -1,0 +1,139 @@
+@use 'tokens' as *;
+
+// Fondo decorativo "Bolas" — partial compartido (parts/fondo-bolas.php).
+// Spec: Figma "Bolas" (1:457) — colores y posiciones exactas del React export.
+
+.fondo-bolas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: #abd8fc;
+  z-index: 0;
+
+  &__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        ellipse 75% 65% at 71% 39%,
+        #a7d8fb 0%,
+        #cbc9fb 50%,
+        #aed2fb 100%
+      ),
+      linear-gradient(
+        104.893deg,
+        #abd7fb 13.233%,
+        #ccc9fb 30.197%,
+        #bbd1fb 76.51%
+      );
+  }
+
+  &__blob {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    will-change: transform;
+
+    &--1 { left: -111px; top: 679px;  width: 1653px; height: auto;
+      animation: fondo-blob-a 32s ease-in-out infinite; }
+    &--2 { left: 230px;  top: -264px; width: 1362px; height: auto;
+      animation: fondo-blob-b 38s ease-in-out -10s infinite; }
+    &--3 { left: -618px; top: -479px; width: 1459px; height: auto; transform: rotate(120deg);
+      animation: fondo-blob-c 42s ease-in-out -16s infinite; }
+  }
+
+  &__bola {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: 157px;
+    height: 157px;
+    background: #cbc7ff;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-delay: calc(var(--i, 0) * -0.31s);
+  }
+
+  &__bola:nth-child(6n + 4) { animation-name: fondo-bola-a; animation-duration: 9s; }
+  &__bola:nth-child(6n + 5) { animation-name: fondo-bola-b; animation-duration: 11s; }
+  &__bola:nth-child(6n + 6) { animation-name: fondo-bola-c; animation-duration: 12s; }
+  &__bola:nth-child(6n + 7) { animation-name: fondo-bola-d; animation-duration: 10.5s; }
+  &__bola:nth-child(6n + 8) { animation-name: fondo-bola-e; animation-duration: 13s; }
+  &__bola:nth-child(6n + 9) { animation-name: fondo-bola-f; animation-duration: 9.5s; }
+
+  &__mask {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url('../img/hero/bolas/noise-mask.webp');
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: overlay;
+    opacity: 0.35;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__bola, &__blob { animation: none; }
+  }
+}
+
+@keyframes fondo-bola-a {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(-60px, 40px) scale(1.04); }
+  50%  { transform: translate(-30px, 80px) scale(1); }
+  75%  { transform: translate(40px, 30px) scale(1.06); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes fondo-bola-b {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(70px, -30px) scale(1.05); }
+  50%  { transform: translate(50px, -70px) scale(1); }
+  75%  { transform: translate(-20px, -40px) scale(1.03); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes fondo-bola-c {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(50px, 60px) scale(1); }
+  50%  { transform: translate(-40px, 70px) scale(1.05); }
+  75%  { transform: translate(-70px, 20px) scale(1.02); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes fondo-bola-d {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(-80px, -30px) scale(1.04); }
+  50%  { transform: translate(-50px, 40px) scale(1.06); }
+  75%  { transform: translate(30px, 60px) scale(1); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes fondo-bola-e {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(40px, -60px) scale(1.03); }
+  50%  { transform: translate(80px, -20px) scale(1); }
+  75%  { transform: translate(20px, 40px) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes fondo-bola-f {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(-30px, 70px) scale(1); }
+  50%  { transform: translate(60px, 50px) scale(1.06); }
+  75%  { transform: translate(70px, -30px) scale(1.02); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes fondo-blob-a {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(40px, -50px); }
+}
+@keyframes fondo-blob-b {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-50px, 60px); }
+}
+@keyframes fondo-blob-c {
+  0%, 100% { transform: rotate(120deg) translate(0, 0); }
+  50%      { transform: rotate(126deg) translate(30px, -40px); }
+}

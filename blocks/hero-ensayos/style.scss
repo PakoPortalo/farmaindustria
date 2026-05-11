@@ -1,100 +1,14 @@
 @use '../../assets/scss/tokens' as *;
 
-// Hero +ensayos — versión estática fiel a Figma "Bolas" (Frame 1216558812).
-// Colores exactos del React export del nodo 1:457:
-//   base:            rgb(171,216,252) #abd8fc
-//   linear stops:    #abd7fb (13.23%) → #ccc9fb (30.20%) → #bbd1fb (76.51%)
-//   radial stops:    #a7d8fb → #cbc9fb (50.34%) → #aed2fb
-//   bola fill:       #cbc7ff (Ellipse 454/455/456 etc.)
-//   mask:            noise PNG con mix-blend-mode: exclusion
+// Hero +ensayos — contenido (logo + claim). El fondo decorativo se inyecta
+// como template part `parts/fondo-bolas.php` y vive en `_fondo-bolas.scss`.
 
 .hero-ensayos {
   position: relative;
   width: 100%;
-  background: #abd8fc;            // base solid del Figma
   overflow: hidden;
   isolation: isolate;
 
-  // Capa de fondo (decorativa)
-  &__bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  // Gradientes: linear diagonal + radial bloom
-  &__gradient {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(
-        ellipse 75% 65% at 71% 39%,
-        #a7d8fb 0%,
-        #cbc9fb 50%,
-        #aed2fb 100%
-      ),
-      linear-gradient(
-        104.893deg,
-        #abd7fb 13.233%,
-        #ccc9fb 30.197%,
-        #bbd1fb 76.51%
-      );
-  }
-
-  // 3 blobs grandes (vectores SVG con opacidad baja del Figma)
-  &__blob {
-    position: absolute;
-    pointer-events: none;
-    user-select: none;
-    opacity: 0.35;
-    mix-blend-mode: multiply;
-    will-change: transform;
-
-    &--1 { left: -111px; top: 679px;  width: 1653px; height: auto;
-      animation: hero-blob-a 32s ease-in-out infinite; }
-    &--2 { left: 230px;  top: -264px; width: 1362px; height: auto;
-      animation: hero-blob-b 38s ease-in-out -10s infinite; }
-    &--3 { left: -618px; top: -479px; width: 1459px; height: auto; transform: rotate(120deg);
-      animation: hero-blob-c 42s ease-in-out -16s infinite; }
-  }
-
-  // Bolas — círculos individuales (sin goo). Color Figma #cbc7ff. Drift sutil.
-  &__bola {
-    position: absolute;
-    left: var(--x);
-    top: var(--y);
-    width: 157px;
-    height: 157px;
-    background: #cbc7ff;
-    border-radius: 50%;
-    pointer-events: none;
-    will-change: transform;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-delay: calc(var(--i, 0) * -0.31s);
-  }
-
-  &__bola:nth-child(6n + 4) { animation-name: hero-bola-a; animation-duration: 9s; }
-  &__bola:nth-child(6n + 5) { animation-name: hero-bola-b; animation-duration: 11s; }
-  &__bola:nth-child(6n + 6) { animation-name: hero-bola-c; animation-duration: 12s; }
-  &__bola:nth-child(6n + 7) { animation-name: hero-bola-d; animation-duration: 10.5s; }
-  &__bola:nth-child(6n + 8) { animation-name: hero-bola-e; animation-duration: 13s; }
-  &__bola:nth-child(6n + 9) { animation-name: hero-bola-f; animation-duration: 9.5s; }
-
-  // Máscara de ruido (rugoso) — PNG noise + mix-blend-exclusion (igual que Figma)
-  &__mask {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image: url('../../assets/img/hero/bolas/noise-mask.webp');
-    background-size: cover;
-    background-position: center;
-    mix-blend-mode: overlay; // grain visible sin lavado de color (exclusion sobre gris ~50% no aporta)
-    opacity: 0.35;
-  }
-
-  // Contenido
   &__inner {
     position: relative;
     z-index: 1;
@@ -135,7 +49,6 @@
     text-underline-offset: 0.05em;
   }
 
-  // Responsive provisional
   @media (max-width: $bp-2xl) {
     &__inner { padding-inline: 5.28vw; }
     &__claim {
@@ -155,66 +68,4 @@
       letter-spacing: -0.04em;
     }
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    &__bola, &__blob { animation: none; }
-  }
-}
-
-// Bolas drift — amplitud ~50-80px en X/Y, scale pulse 1↔1.06
-@keyframes hero-bola-a {
-  0%   { transform: translate(0, 0) scale(1); }
-  25%  { transform: translate(-60px, 40px) scale(1.04); }
-  50%  { transform: translate(-30px, 80px) scale(1); }
-  75%  { transform: translate(40px, 30px) scale(1.06); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-@keyframes hero-bola-b {
-  0%   { transform: translate(0, 0) scale(1); }
-  25%  { transform: translate(70px, -30px) scale(1.05); }
-  50%  { transform: translate(50px, -70px) scale(1); }
-  75%  { transform: translate(-20px, -40px) scale(1.03); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-@keyframes hero-bola-c {
-  0%   { transform: translate(0, 0) scale(1); }
-  25%  { transform: translate(50px, 60px) scale(1); }
-  50%  { transform: translate(-40px, 70px) scale(1.05); }
-  75%  { transform: translate(-70px, 20px) scale(1.02); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-@keyframes hero-bola-d {
-  0%   { transform: translate(0, 0) scale(1); }
-  25%  { transform: translate(-80px, -30px) scale(1.04); }
-  50%  { transform: translate(-50px, 40px) scale(1.06); }
-  75%  { transform: translate(30px, 60px) scale(1); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-@keyframes hero-bola-e {
-  0%   { transform: translate(0, 0) scale(1); }
-  25%  { transform: translate(40px, -60px) scale(1.03); }
-  50%  { transform: translate(80px, -20px) scale(1); }
-  75%  { transform: translate(20px, 40px) scale(1.05); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-@keyframes hero-bola-f {
-  0%   { transform: translate(0, 0) scale(1); }
-  25%  { transform: translate(-30px, 70px) scale(1); }
-  50%  { transform: translate(60px, 50px) scale(1.06); }
-  75%  { transform: translate(70px, -30px) scale(1.02); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-
-// Blobs drift — más lento y amplio
-@keyframes hero-blob-a {
-  0%, 100% { transform: translate(0, 0); }
-  50%      { transform: translate(40px, -50px); }
-}
-@keyframes hero-blob-b {
-  0%, 100% { transform: translate(0, 0); }
-  50%      { transform: translate(-50px, 60px); }
-}
-@keyframes hero-blob-c {
-  0%, 100% { transform: rotate(120deg) translate(0, 0); }
-  50%      { transform: rotate(126deg) translate(30px, -40px); }
 }

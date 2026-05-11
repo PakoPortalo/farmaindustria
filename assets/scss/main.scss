@@ -2,6 +2,8 @@
 @use 'fonts';
 @use 'reset';
 @use 'layout';
+@use 'fondo-bolas';
 
 // Bloques (importar aquí cada style.scss de bloque)
 @use '../../blocks/hero-ensayos/style' as hero-ensayos;
+@use '../../blocks/hero-secundario/style' as hero-secundario;

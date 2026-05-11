@@ -2,25 +2,31 @@
 /**
  * Template del home — renderiza los bloques del tema en orden.
  *
- * Cada bloque se monta vía render_block() apuntando al bloque registrado
- * en /blocks/<nombre>/. Añadir aquí los nuevos bloques conforme se creen.
+ * Los heroes que comparten fondo "Bolas" se agrupan en `.home-hero-stack`
+ * para que el bg sea continuo entre módulos (no se ve corte vertical).
  */
 
 get_header();
 ?>
 
 <main id="main" class="main main--home">
-    <?php
-    $home_blocks = [
-        ['blockName' => 'fi/hero-ensayos', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
-        // TODO: añadir aquí el resto de bloques del home conforme se monten:
-        // hero-secundario, quote, banner-intro, cels-testimonios, fondo3,
-        // espana-lider, claves-cards, claves-expandido, clave1, banners-cta.
-    ];
+    <div class="home-hero-stack">
+        <?php get_template_part('parts/fondo-bolas'); ?>
+        <?php
+        $hero_blocks = [
+            ['blockName' => 'fi/hero-ensayos',    'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
+            ['blockName' => 'fi/hero-secundario', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
+        ];
+        foreach ($hero_blocks as $block) {
+            echo render_block($block);
+        }
+        ?>
+    </div>
 
-    foreach ($home_blocks as $block) {
-        echo render_block($block);
-    }
+    <?php
+    // TODO: añadir aquí el resto de bloques del home conforme se monten:
+    // quote, banner-intro, cels-testimonios, fondo3, espana-lider,
+    // claves-cards, claves-expandido, clave1, banners-cta.
     ?>
 </main>
 

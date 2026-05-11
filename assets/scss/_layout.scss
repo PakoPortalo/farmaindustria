@@ -14,6 +14,21 @@
   &--home { padding-block: 0; min-height: auto; }
 }
 
+// Apila heroes con fondo bolas compartido (continuidad vertical sin corte).
+.home-hero-stack {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  > .hero-ensayos,
+  > .hero-secundario {
+    position: relative;
+    z-index: 1;
+    overflow: visible;        // overflow vive en el wrapper
+    background: transparent;
+  }
+}
+
 .site-header {
   border-bottom: 1px solid $color-border;
   background: $color-bg;

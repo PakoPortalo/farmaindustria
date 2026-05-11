@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "fi/hero-secundario",
+  "title": "Hero secundario (edificio)",
+  "category": "design",
+  "icon": "format-video",
+  "description": "Banner con imagen del edificio en forma label + CTA hover \"ver vídeo\".",
+  "keywords": ["hero", "edificio", "video"],
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "anchor": true
+  },
+  "render": "file:./render.php",
+  "textdomain": "farmaindustria"
+}

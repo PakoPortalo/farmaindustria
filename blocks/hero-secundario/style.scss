@@ -1,0 +1,105 @@
+@use '../../assets/scss/tokens' as *;
+
+// Hero secundario — Figma 116:2011 (1440x874).
+// .trigger es el recorte: tiene el mask-image fijo y el área de hover.
+// La <img> dentro hace scale(1.08) on hover. "VER VÍDEO" en CTA.
+
+.hero-secundario {
+  position: relative;
+  width: 100%;
+  max-width: $design-width;
+  margin-inline: auto;
+  aspect-ratio: 1440 / 874;
+  overflow: hidden;
+
+  &__trigger {
+    position: absolute;
+    left: 50%;
+    top: calc(169 / 874 * 100%);
+    width: calc(1285 / 1440 * 100%);
+    aspect-ratio: 1285 / 536;
+    transform: translateX(-50%);
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    -webkit-mask-image: url('../../assets/img/hero-secundario/recorte-mask.webp');
+            mask-image: url('../../assets/img/hero-secundario/recorte-mask.webp');
+    -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-mode: luminance;
+            mask-mode: luminance;
+
+    &:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 4px;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    user-select: none;
+    transition: transform 0.5s ease-out;
+    will-change: transform;
+  }
+
+  &__cta {
+    position: absolute;
+    z-index: 2;
+    top: calc(256 / 536 * 100%);    // 425-169 = 256 desde el top del recorte
+    left: calc(683 / 1285 * 100%);  // CTA en x:761 del frame; recorte left:77.5 → 683/1285
+    transform: translateX(-100%);
+    font-family: $font-family-base;
+    font-weight: $fw-medium;
+    font-size: 16.347px;
+    line-height: 1.4;
+    text-transform: uppercase;
+    text-align: right;
+    color: #fff;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity $transition-base;
+    pointer-events: none;
+  }
+
+  &__trigger:hover &__img,
+  &__trigger:focus-visible &__img { transform: scale(1.08); }
+
+  &__trigger:hover &__cta,
+  &__trigger:focus-visible &__cta { opacity: 1; }
+
+  @media (max-width: $bp-md) {
+    aspect-ratio: auto;
+    padding-block: $space-6;
+
+    &__trigger {
+      position: static;
+      transform: none;
+      width: 100%;
+      left: auto;
+      top: auto;
+    }
+
+    &__cta {
+      position: static;
+      transform: none;
+      opacity: 1;
+      margin-top: $space-3;
+      text-align: center;
+    }
+
+    &__trigger:hover &__img,
+    &__trigger:focus-visible &__img { transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__img { transition: none; }
+    &__trigger:hover &__img { transform: none; }
+  }
+}
