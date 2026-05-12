@@ -1,0 +1,138 @@
+@use '../../assets/scss/tokens' as *;
+
+// Entenderlo · Vídeo — Figma 116:2030 (heading) + 116:2031 (Component 2).
+// Heading "¿Qué son los ensayos clínicos?" izq + tarjeta de vídeo full-width
+// con foto + overlay "VER VÍDEO".
+
+.entenderlo-video {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+
+  &__inner {
+    position: relative;
+    width: 100%;
+    max-width: $design-width;
+    margin-inline: auto;
+    padding-inline: $design-pad-x;
+    // Pegado al módulo testimonios (los cards quedan justo arriba). Solo
+    // espacio inferior antes del próximo bloque.
+    padding-block: 0 calc(120 / 1440 * 100vw);
+
+    @media (min-width: $bp-2xl) {
+      padding-block: 0 120px;
+    }
+  }
+
+  // === Heading "¿Qué son los ensayos clínicos?" ===
+  // Spec Figma 116:2030: Switzer Regular 60px, tracking -2px, izquierda.
+  &__heading {
+    margin: 0 0 calc(40 / 1440 * 100vw);
+    font-family: $font-family-base;
+    font-weight: $fw-regular;
+    font-size: calc(60 / 1440 * 100vw);
+    line-height: 1;
+    letter-spacing: calc(-2 / 1440 * 100vw);
+    color: $color-text;
+    text-align: left;
+
+    @media (min-width: $bp-2xl) {
+      font-size: 60px;
+      letter-spacing: -2px;
+      margin-bottom: 40px;
+    }
+  }
+
+  // === Tarjeta vídeo ===
+  // Spec Figma 116:2031: 1285×536. El PNG Default trae baked el shape (notches + "+").
+  // En hover: zoom 1.05 del poster + label "VER VÍDEO" centrado (mismo
+  // tipo/forma que hero-secundario · balcon).
+  &__card {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1285 / 536;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    color: #fff;
+    -webkit-tap-highlight-color: transparent;
+
+    &:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 4px;
+    }
+  }
+
+  // Wrapper con mask del shape (alpha del Subtract Figma). El mask es estático:
+  // recorta a la forma de "ventana" (notches + "+") y la <img> dentro
+  // hace zoom sin mover los bordes.
+  &__media {
+    position: absolute;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+    -webkit-mask-image: url('../../assets/img/entenderlo/que-son-video-mask.webp');
+            mask-image: url('../../assets/img/entenderlo/que-son-video-mask.webp');
+    -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-mode: alpha;
+            mask-mode: alpha;
+  }
+
+  &__poster {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    transition: transform 0.5s ease-out;
+    will-change: transform;
+    transform-origin: center;
+  }
+
+  // CTA "Ver vídeo" centrado — misma tipografía que hero-secundario.
+  &__cta {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: $font-family-base;
+    font-weight: $fw-medium;
+    font-size: 16.347px;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: #fff;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity $transition-base;
+    pointer-events: none;
+  }
+
+  &__card:hover &__poster,
+  &__card:focus-visible &__poster { transform: scale(1.05); }
+
+  &__card:hover &__cta,
+  &__card:focus-visible &__cta { opacity: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__poster { transition: none; }
+    &__card:hover &__poster,
+    &__card:focus-visible &__poster { transform: none; }
+  }
+
+  // Mobile
+  @media (max-width: $bp-md) {
+    &__inner { padding-block: 0 $space-10; }
+    &__heading {
+      font-size: clamp(1.75rem, 7vw, 2.5rem);
+      letter-spacing: -0.03em;
+      margin-bottom: $space-6;
+    }
+    &__cta { opacity: 1; } // siempre visible en touch
+  }
+}

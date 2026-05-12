@@ -35,6 +35,10 @@
     "file": "fonts/pixelify-400-latin.D1rQrCZP.woff2",
     "src": "assets/fonts/pixelify-sans/pixelify-400-latin.woff2"
   },
+  "assets/fonts/switzer/switzer-300.woff2": {
+    "file": "fonts/switzer-300.CCdVugut.woff2",
+    "src": "assets/fonts/switzer/switzer-300.woff2"
+  },
   "assets/fonts/switzer/switzer-400.woff2": {
     "file": "fonts/switzer-400.BxEtgLLb.woff2",
     "src": "assets/fonts/switzer/switzer-400.woff2"
@@ -51,6 +55,10 @@
     "file": "fonts/switzer-700.9JzFtTp4.woff2",
     "src": "assets/fonts/switzer/switzer-700.woff2"
   },
+  "assets/img/entenderlo/que-son-video-mask.webp": {
+    "file": "img/que-son-video-mask.CVShJrJC.webp",
+    "src": "assets/img/entenderlo/que-son-video-mask.webp"
+  },
   "assets/img/hero/bolas/noise-mask.webp": {
     "file": "img/noise-mask.BkERgO0_.webp",
     "src": "assets/img/hero/bolas/noise-mask.webp"
@@ -62,7 +70,7 @@
     "isEntry": true
   },
   "assets/scss/main.scss": {
-    "file": "css/styles.Cu2UFEp4.css",
+    "file": "css/styles.549NaAYQ.css",
     "src": "assets/scss/main.scss",
     "isEntry": true
   }

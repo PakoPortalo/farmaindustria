@@ -50,6 +50,7 @@ get_header();
         get_template_part('parts/fondo-bolas');
         $entenderlo_blocks = [
             ['blockName' => 'fi/entenderlo-testimonios', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
+            ['blockName' => 'fi/entenderlo-video',       'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
         ];
         foreach ($entenderlo_blocks as $block) {
             echo render_block($block);

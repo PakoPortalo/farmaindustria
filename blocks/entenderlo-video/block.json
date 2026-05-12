@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "fi/entenderlo-video",
+  "title": "Entenderlo · ¿Qué son los ensayos clínicos? (vídeo)",
+  "category": "design",
+  "icon": "video-alt3",
+  "description": "Heading '¿Qué son los ensayos clínicos?' alineado izquierda + tarjeta de vídeo full-width con overlay 'Ver vídeo'.",
+  "keywords": ["video", "ensayos", "entenderlo"],
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "anchor": true
+  },
+  "render": "file:./render.php",
+  "textdomain": "farmaindustria"
+}

@@ -9,22 +9,31 @@
 
   // ----- 1) Crossfade -----
   if (stacks.length) {
-    const pildoras = document.querySelectorAll('.home-innovacion-stack .fondo-pildoras');
-    const bolas    = document.querySelectorAll('.home-entenderlo-stack .fondo-bolas');
+    const innovacion = document.querySelector('.home-innovacion-stack');
+
+    // Ventana del crossfade: ocurre cuando el bottom de innovación va saliendo
+    // por la PARTE SUPERIOR del viewport. Talento + caption + pildoras se ven
+    // a tope durante todo el scroll de su estado; el fade se ejecuta solo en
+    // el tramo final, donde innovación está abandonando el viewport.
+    // p=0 cuando innovación bottom está FADE_VH * 100vh por debajo de viewport top.
+    // p=1 cuando innovación bottom alcanza viewport top (Talento fuera de vista).
+    const FADE_VH = 0.45;
 
     let ticking = false;
 
     const update = () => {
       ticking = false;
-      stacks.forEach(stack => {
-        const rect = stack.getBoundingClientRect();
-        const vh   = window.innerHeight || document.documentElement.clientHeight;
-        // p=0 → top del stack aún por debajo del viewport (entrando).
-        // p=1 → top del stack ha alcanzado el top del viewport (totalmente entrado).
-        const p = Math.max(0, Math.min(1, (vh - rect.top) / vh));
-        bolas.forEach(el    => el.style.setProperty('--fade', p.toFixed(3)));
-        pildoras.forEach(el => el.style.setProperty('--fade', (1 - p).toFixed(3)));
-      });
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      let p = 1;
+
+      if (innovacion) {
+        const r = innovacion.getBoundingClientRect();
+        const win = FADE_VH * vh;
+        p = Math.max(0, Math.min(1, (win - r.bottom) / win));
+      }
+
+      stacks.forEach(s => s.style.setProperty('--fade', p.toFixed(3)));
+      if (innovacion) innovacion.style.setProperty('--fade', (1 - p).toFixed(3));
     };
 
     const onScroll = () => {

@@ -43,9 +43,14 @@ html.is-hero-locked body {
 }
 
 // Stack del módulo innovación con fondo pildoras compartido.
+// La opacity aplicada al wrapper hace que TODO (pildoras + fotos + palabras +
+// captions) se desvanezca a la vez durante el crossfade. --fade lo setea
+// blocks/entenderlo-testimonios/script.js cuando innovación abandona el viewport.
 .home-innovacion-stack {
   position: relative;
   isolation: isolate;
+  opacity: var(--fade, 1);
+  will-change: opacity;
 
   > .fondo-pildoras { z-index: 0; }
 
@@ -57,13 +62,26 @@ html.is-hero-locked body {
 }
 
 // Stack del módulo entenderlo · testimonios. Reutiliza el fondo "Bolas" del
-// home-hero-stack y lo solapa 100vh con el módulo anterior para permitir el
+// home-hero-stack y lo solapa con el módulo anterior para permitir el
 // crossfade scroll-driven que controla `entenderlo-testimonios/script.js`.
+// El solape (35vh) coincide con la ventana del crossfade (FADE_VH=0.35 en
+// script.js) para que el contenido aparezca justo al terminar el fade, sin
+// dejar scroll vacío entre el final de innovación y el smiley.
 .home-entenderlo-stack {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
-  margin-top: -100vh;       // arranca 100vh antes para overlap del fade
+  overflow: hidden;        // contiene cards traslateY(85vh) y evita scroll horizontal
+  margin-top: -45vh;       // overlap = duración del fade (FADE_VH=0.45 en script.js)
+  opacity: var(--fade, 1); // todo el stack (bolas + smiley + heading + CTA) fade-in juntos
+  will-change: opacity;
+
+  // Máscara superior: borde suave en la parte alta del stack para que el
+  // crossfade con innovación no quede a corte vivo. Solo afecta a la zona
+  // de solape; debajo de 45vh el contenido es totalmente opaco.
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 45vh);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 45vh);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
 
   > .fondo-bolas { z-index: 0; }
 
@@ -71,11 +89,25 @@ html.is-hero-locked body {
     position: relative;
     z-index: 1;
     background: transparent;
-    padding-top: 100vh;     // recompensa el margin-top negativo: contenido queda en su sitio
+    padding-top: 45vh;     // recompensa el margin-top negativo: contenido queda en su sitio
+  }
+
+  > .entenderlo-video {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    // Pull-up: el módulo testimonios deja ~264px de padding inferior antes
+    // del próximo bloque. Subimos el vídeo para que quede pegado a los cards.
+    margin-top: calc(-220 / 1440 * 100vw);
+
+    @media (min-width: $bp-2xl) { margin-top: -450px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     margin-top: 0;
+    -webkit-mask-image: none;
+            mask-image: none;
+    opacity: 1;
     > .entenderlo { padding-top: 0; }
   }
 }

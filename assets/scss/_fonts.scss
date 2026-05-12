@@ -1,5 +1,13 @@
 @font-face {
   font-family: 'Switzer';
+  src: url('../fonts/switzer/switzer-300.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
   src: url('../fonts/switzer/switzer-400.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;

@@ -31,8 +31,8 @@ $ring_text   = 'VER TESTIMONIOS · VER TESTIMONIOS · VER TESTIMONIOS · ';
         <img class="entenderlo__smiley" src="<?php echo esc_url($smiley); ?>" alt="" width="91" height="90" loading="lazy" />
 
         <h2 class="entenderlo__heading">
-            <span class="entenderlo__heading-line entenderlo__heading-line--top">La mejor manera de entenderlo:</span>
-            <span class="entenderlo__heading-line entenderlo__heading-line--bot">escuchar a quienes lo han vivido.</span>
+            <span class="entenderlo__heading-line entenderlo__heading-line--top">La mejor manera de<br />entenderlo:</span>
+            <span class="entenderlo__heading-line entenderlo__heading-line--bot">escuchar a quienes<br />lo han vivido.</span>
         </h2>
 
         <button type="button" class="entenderlo__cta" aria-label="<?php echo esc_attr($cta_label); ?>" aria-expanded="false">
@@ -52,10 +52,15 @@ $ring_text   = 'VER TESTIMONIOS · VER TESTIMONIOS · VER TESTIMONIOS · ';
             </span>
         </button>
 
+        <?php
+        // Shape de tarjeta testimonio (Figma Rectangle 189/190/191): SVG con
+        // forma + drop-shadow embebida, blanco por dentro. Sin foto.
+        $shape = $img_dir . '/rectangle-shape.svg';
+        ?>
         <div class="entenderlo__photos" aria-hidden="true">
-            <div class="entenderlo__photo entenderlo__photo--left"></div>
-            <div class="entenderlo__photo entenderlo__photo--center"></div>
-            <div class="entenderlo__photo entenderlo__photo--right"></div>
+            <img class="entenderlo__photo entenderlo__photo--left"   src="<?php echo esc_url($shape); ?>" alt="" width="462" height="520" loading="lazy" />
+            <img class="entenderlo__photo entenderlo__photo--center" src="<?php echo esc_url($shape); ?>" alt="" width="462" height="520" loading="lazy" />
+            <img class="entenderlo__photo entenderlo__photo--right"  src="<?php echo esc_url($shape); ?>" alt="" width="462" height="520" loading="lazy" />
         </div>
     </div>
 </section>
