@@ -15,22 +15,31 @@
     width: 100%;
     max-width: $design-width;
     margin-inline: auto;
-    padding: 17px $design-pad-x 170px;
-    aspect-ratio: 1440 / 840;
+    padding: 17px $design-pad-x 40px;
+    aspect-ratio: 1440 / 640;
   }
 
   &__logo {
     width: 100%;
     max-width: 1287.88px;
     margin: 0;
-    img { width: 100%; height: auto; }
+    // Estado inicial: oculto (curtain abajo). La animación arranca cuando
+    // script.js añade `.is-ready` al section (window load + fonts ready).
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(24px);
+    will-change: clip-path, transform;
+    img { width: 100%; height: auto; display: block; }
+  }
+
+  &.is-ready &__logo {
+    animation: hero-ensayos-curtain 1.4s cubic-bezier(.16, .84, .26, 1) both;
   }
 
   &__claim {
     position: absolute;
     left: $design-pad-x;
     right: $design-pad-x;
-    top: 522.08px;
+    top: 340px;
     margin: 0;
     padding: 0;
     font-family: $font-family-heading;
@@ -54,7 +63,7 @@
     &__claim {
       left: 5.28vw;
       right: 5.28vw;
-      top: 36.26vw;
+      top: 23.6vw;
       font-size: 5.28vw;
     }
   }
@@ -63,9 +72,28 @@
     &__inner { aspect-ratio: auto; padding-block: $space-6 $space-8; }
     &__claim {
       position: static;
-      margin-top: $space-6;
+      margin-top: $space-5;
       font-size: clamp(2.25rem, 9vw, 3.5rem);
       letter-spacing: -0.04em;
     }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__logo {
+      animation: none;
+      clip-path: inset(0);
+      transform: none;
+    }
+  }
+}
+
+@keyframes hero-ensayos-curtain {
+  from {
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(24px);
+  }
+  to {
+    clip-path: inset(0);
+    transform: translateY(0);
   }
 }

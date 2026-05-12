@@ -45,9 +45,21 @@ get_header();
         ?>
     </div>
 
+    <div class="home-entenderlo-stack">
+        <?php
+        get_template_part('parts/fondo-bolas');
+        $entenderlo_blocks = [
+            ['blockName' => 'fi/entenderlo-testimonios', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
+        ];
+        foreach ($entenderlo_blocks as $block) {
+            echo render_block($block);
+        }
+        ?>
+    </div>
+
     <?php
     // TODO: añadir aquí el resto de bloques del home conforme se monten:
-    // fondo3, espana-lider, claves-cards, claves-expandido, clave1, banners-cta.
+    // espana-lider, claves-cards, claves-expandido, clave1, banners-cta.
     ?>
 </main>
 

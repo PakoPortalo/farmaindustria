@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91 90" width="91" height="90" fill="#000" aria-hidden="true" shape-rendering="crispEdges">
+  <!-- Pixel smiley face: blocky circle outline + 2 vertical eye bars + U-shaped mouth.
+       Cuadrícula 13×13 sobre el viewBox 91×90 (~7px por celda). -->
+  <!-- Outline (top) -->
+  <rect x="28" y="0"  width="35" height="7"/>
+  <rect x="14" y="7"  width="14" height="7"/>
+  <rect x="63" y="7"  width="14" height="7"/>
+  <rect x="7"  y="14" width="7"  height="7"/>
+  <rect x="77" y="14" width="7"  height="7"/>
+  <rect x="0"  y="21" width="7"  height="14"/>
+  <rect x="84" y="21" width="7"  height="14"/>
+  <rect x="0"  y="49" width="7"  height="14"/>
+  <rect x="84" y="49" width="7"  height="14"/>
+  <rect x="7"  y="63" width="7"  height="7"/>
+  <rect x="77" y="63" width="7"  height="7"/>
+  <rect x="14" y="70" width="14" height="7"/>
+  <rect x="63" y="70" width="14" height="7"/>
+  <rect x="28" y="77" width="35" height="7"/>
+  <!-- Eyes (2 vertical bars at cols 4 and 8) -->
+  <rect x="30" y="28" width="7"  height="21"/>
+  <rect x="54" y="28" width="7"  height="21"/>
+  <!-- Smile (U shape) -->
+  <rect x="28" y="56" width="7"  height="7"/>
+  <rect x="56" y="56" width="7"  height="7"/>
+  <rect x="35" y="63" width="21" height="7"/>
+</svg>

@@ -1,0 +1,232 @@
+@use '../../assets/scss/tokens' as *;
+
+// Entenderlo · Testimonios — Figma 116:2019 + 116:2023 + 116:2024.
+// Layout vertical: smiley → heading → CTA cascos → (overlay 3 fotos al click).
+
+.entenderlo {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+
+  &__inner {
+    position: relative;
+    width: 100%;
+    max-width: $design-width;
+    margin-inline: auto;
+    padding-inline: $design-pad-x;
+    // Spacing vertical del contenido. El padding-top 100vh del solape lo añade
+    // .home-entenderlo-stack > .entenderlo en _layout.scss.
+    padding-block: calc(264 / 1440 * 100vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    @media (min-width: $bp-2xl) { padding-block: 264px; }
+  }
+
+  &__smiley {
+    width: calc(91 / 1440 * 100vw);
+    height: auto;
+    max-width: 91px;
+    margin: 0 0 calc(37 / 1440 * 100vw);
+
+    @media (min-width: $bp-2xl) { margin-bottom: 37px; }
+  }
+
+  &__heading {
+    margin: 0;
+    font-family: $font-family-base;
+    font-size: calc(120 / 1440 * 100vw);
+    line-height: 0.9;
+    letter-spacing: calc(-3.819 / 1440 * 100vw);
+    color: $color-text;
+    text-align: center;
+
+    @media (min-width: $bp-2xl) {
+      font-size: 120px;
+      letter-spacing: -3.819px;
+    }
+  }
+
+  &__heading-line {
+    display: block;
+
+    // Línea 1: Regular. Línea 2: Light fallback → Regular (Switzer 300 no cargado;
+    // usamos 400 con leve diferencia de tracking para sugerir aire). Cuando se
+    // añada switzer-300.woff2 a assets/fonts/switzer/ y al @font-face, cambiar
+    // font-weight de --bot a 300.
+    &--top { font-weight: $fw-regular; }
+    &--bot { font-weight: $fw-regular; letter-spacing: calc(-4.5 / 1440 * 100vw); }
+
+    @media (min-width: $bp-2xl) {
+      &--bot { letter-spacing: -4.5px; }
+    }
+  }
+
+  // === CTA cascos + ring rotando ===
+  &__cta {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin-top: calc(80 / 1440 * 100vw);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    color: $color-text;
+    isolation: isolate;
+    -webkit-tap-highlight-color: transparent;
+
+    @media (min-width: $bp-2xl) { margin-top: 80px; }
+
+    &:focus-visible {
+      outline: 2px solid $color-text;
+      outline-offset: 8px;
+      border-radius: 50%;
+    }
+  }
+
+  &__cta-ring {
+    position: absolute;
+    inset: 0;
+    display: block;
+    animation: entenderlo-ring-spin 14s linear infinite;
+    will-change: transform;
+    transform-origin: 50% 50%;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+  }
+
+  &__cta-ring-text {
+    font-family: $font-family-base;
+    font-weight: $fw-medium;
+    font-size: 11px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    fill: $color-text;
+  }
+
+  &__cta-icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 92.857px;
+    height: 92.857px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+
+    img {
+      width: 48px;
+      height: 48px;
+      transition: transform 0.35s ease-out;
+      will-change: transform;
+    }
+  }
+
+  &__cta:hover &__cta-icon img,
+  &__cta:focus-visible &__cta-icon img {
+    transform: scale(1.15);
+  }
+
+  // === Overlay 3 fotos placeholder (blanco) ===
+  &__photos {
+    position: absolute;
+    inset: auto 0 auto 0;
+    top: 100%;
+    height: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  &__photo {
+    position: absolute;
+    aspect-ratio: 366 / 457;
+    width: clamp(220px, 25vw, 366px);
+    background: #fff;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    // Recorte label compartido con hero-secundario.
+    -webkit-mask-image: url('../../assets/img/hero-secundario/recorte-mask.webp');
+            mask-image: url('../../assets/img/hero-secundario/recorte-mask.webp');
+    -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-mode: luminance;
+            mask-mode: luminance;
+    transform: translate(0, 40px) rotate(0deg);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(.22,.7,.2,1), opacity 0.5s ease;
+
+    &--left   { left: 5.3vw;  top: 40px; }
+    &--center { left: 50%; top: 20px; transform: translate(-50%, 40px) rotate(0deg); }
+    &--right  { right: 5.3vw; top: 40px; }
+  }
+
+  // is-open → mostrar overlay
+  &.is-open &__photos {
+    opacity: 1;
+    pointer-events: none;
+    height: auto;
+    bottom: -60vh; // espacio donde se ven
+  }
+
+  &.is-open &__photo {
+    opacity: 1;
+
+    &--left   { transform: translate(0, 0) rotate(-6.51deg); }
+    &--center { transform: translate(-50%, 0) rotate(3.5deg); }
+    &--right  { transform: translate(0, 0) rotate(6.51deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__cta-ring { animation: none; }
+    &__cta-icon img { transition: none; }
+    &__cta:hover &__cta-icon img,
+    &__cta:focus-visible &__cta-icon img { transform: none; }
+    &__photo { transition: none; }
+  }
+
+  // Mobile: heading + CTA centrados; fotos se apilan vertical.
+  @media (max-width: $bp-md) {
+    padding-block: $space-10;
+
+    &__heading {
+      font-size: clamp(2rem, 9vw, 3.5rem);
+      letter-spacing: -0.04em;
+    }
+
+    &__cta {
+      width: 140px;
+      height: 140px;
+      margin-top: $space-6;
+    }
+
+    &__cta-icon { width: 72px; height: 72px; img { width: 36px; height: 36px; } }
+
+    &__cta-ring svg { font-size: 9px; }
+
+    &__photos {
+      position: static;
+      height: auto;
+      bottom: auto;
+      margin-top: $space-6;
+      display: none; // overlay deshabilitado en mobile por ahora
+    }
+  }
+}
+
+@keyframes entenderlo-ring-spin {
+  to { transform: rotate(360deg); }
+}

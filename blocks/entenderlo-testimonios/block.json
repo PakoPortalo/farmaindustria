@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "fi/entenderlo-testimonios",
+  "title": "Entenderlo · Testimonios",
+  "category": "design",
+  "icon": "format-audio",
+  "description": "Heading 'La mejor manera de entenderlo…' + CTA cascos con texto circular 'Ver testimonios' rotando y 3 tarjetas placeholder.",
+  "keywords": ["testimonios", "cascos", "entenderlo"],
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "anchor": true
+  },
+  "render": "file:./render.php",
+  "viewScript": "file:./script.js",
+  "textdomain": "farmaindustria"
+}

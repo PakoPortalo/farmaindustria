@@ -14,6 +14,16 @@
   &--home { padding-block: 0; min-height: auto; }
 }
 
+// Bloqueo de scroll durante la curtain reveal del hero +ensayos.
+// blocks/hero-ensayos/script.js añade/retira `.is-hero-locked` en <html>.
+html.is-hero-locked,
+html.is-hero-locked body {
+  overflow: hidden;
+  height: 100%;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
 // Apila heroes con fondo bolas compartido (continuidad vertical sin corte).
 .home-hero-stack {
   position: relative;
@@ -43,6 +53,30 @@
     position: relative;
     z-index: 1;
     background: transparent;
+  }
+}
+
+// Stack del módulo entenderlo · testimonios. Reutiliza el fondo "Bolas" del
+// home-hero-stack y lo solapa 100vh con el módulo anterior para permitir el
+// crossfade scroll-driven que controla `entenderlo-testimonios/script.js`.
+.home-entenderlo-stack {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: -100vh;       // arranca 100vh antes para overlap del fade
+
+  > .fondo-bolas { z-index: 0; }
+
+  > .entenderlo {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    padding-top: 100vh;     // recompensa el margin-top negativo: contenido queda en su sitio
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    margin-top: 0;
+    > .entenderlo { padding-top: 0; }
   }
 }
 

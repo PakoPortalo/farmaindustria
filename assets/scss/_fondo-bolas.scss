@@ -9,6 +9,8 @@
   pointer-events: none;
   background: #abd8fc;
   z-index: 0;
+  opacity: var(--fade, 1);
+  transition: opacity 0.1s linear;
 
   &__gradient {
     position: absolute;

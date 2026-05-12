@@ -14,6 +14,8 @@
   overflow: hidden;
   background: #f9b5cb;
   z-index: 0;
+  opacity: var(--fade, 1);
+  transition: opacity 0.1s linear;
 
   &__base {
     position: absolute;
