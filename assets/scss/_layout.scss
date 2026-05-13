@@ -133,22 +133,3 @@ html.is-hero-locked body {
   }
 }
 
-.site-footer {
-  margin-top: $space-10;
-  padding-block: $space-6;
-  background: $color-bg-alt;
-  color: $color-text-muted;
-  &__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: $space-5;
-    flex-wrap: wrap;
-  }
-  &__copy { font-size: $fs-sm; }
-  .nav-footer {
-    display: flex;
-    gap: $space-5;
-    font-size: $fs-sm;
-  }
-}
