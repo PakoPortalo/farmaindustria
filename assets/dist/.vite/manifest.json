@@ -55,6 +55,10 @@
     "file": "fonts/switzer-700.9JzFtTp4.woff2",
     "src": "assets/fonts/switzer/switzer-700.woff2"
   },
+  "assets/img/claves/card.png": {
+    "file": "img/card.CLQyETzx.png",
+    "src": "assets/img/claves/card.png"
+  },
   "assets/img/entenderlo/que-son-video-mask.webp": {
     "file": "img/que-son-video-mask.CVShJrJC.webp",
     "src": "assets/img/entenderlo/que-son-video-mask.webp"
@@ -70,7 +74,7 @@
     "isEntry": true
   },
   "assets/scss/main.scss": {
-    "file": "css/styles.549NaAYQ.css",
+    "file": "css/styles.Com_wrNh.css",
     "src": "assets/scss/main.scss",
     "isEntry": true
   }

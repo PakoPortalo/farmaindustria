@@ -11,7 +11,9 @@
  * Estilos en assets/scss/_fondo-bolas.scss.
  *
  * @var array $args Opcional. Acepta:
- *   - 'bolas' => array de [x, y] (override total)
+ *   - 'bolas'   => array de [x, y] (override total)
+ *   - 'variant' => string ('bolas' default | 'verde')
+ *   - 'extend'  => bool (default true). False = solo las 30 originales (sección sticky 100vh).
  */
 
 if (!defined('ABSPATH')) {
@@ -19,8 +21,10 @@ if (!defined('ABSPATH')) {
 }
 
 $bolas_dir = FI_THEME_URI . '/assets/img/hero/bolas';
+$variant   = isset($args['variant']) ? preg_replace('/[^a-z0-9_-]/i', '', (string) $args['variant']) : 'bolas';
+$extend    = !isset($args['extend']) || (bool) $args['extend'];
 
-$default_bolas = [
+$figma_bolas = [
     // Figma — 30 originales (y: 0-914)
     [539, 239], [802, 199], [747, 356], [960, 435], [1151, 295],
     [25, 135], [288, 95], [233, 252], [446, 331], [637, 191],
@@ -28,6 +32,9 @@ $default_bolas = [
     [952, 404], [707, 511], [721, 346], [495, 324], [347, 509],
     [1475, 371], [1231, 479], [1244, 313], [1018, 292], [870, 476],
     [1310, 90], [1176, 143], [1160, -48], [1013, -57], [806, -68],
+];
+
+$extend_bolas = [
     // Continuación (y: 800-1700) — distribución manual para densidad similar
     [100, 820], [350, 800], [620, 850], [880, 830], [1140, 810], [1380, 870],
     [60, 980], [280, 1020], [520, 990], [780, 1050], [1020, 970], [1280, 1010], [1450, 1040],
@@ -42,9 +49,12 @@ $default_bolas = [
     [30, 2330],  [300, 2310], [570, 2370], [840, 2330], [1110, 2360], [1380, 2320],
 ];
 
-$bolas = isset($args['bolas']) && is_array($args['bolas']) ? $args['bolas'] : $default_bolas;
+$default_bolas = $extend ? array_merge($figma_bolas, $extend_bolas) : $figma_bolas;
+$bolas         = isset($args['bolas']) && is_array($args['bolas']) ? $args['bolas'] : $default_bolas;
+
+$variant_class = $variant && $variant !== 'bolas' ? ' fondo-bolas--' . $variant : '';
 ?>
-<div class="fondo-bolas" aria-hidden="true">
+<div class="fondo-bolas<?php echo esc_attr($variant_class); ?>" aria-hidden="true">
     <div class="fondo-bolas__gradient"></div>
 
     <img class="fondo-bolas__blob fondo-bolas__blob--1" src="<?php echo esc_url($bolas_dir . '/vector-1.svg'); ?>" alt="" loading="lazy" />

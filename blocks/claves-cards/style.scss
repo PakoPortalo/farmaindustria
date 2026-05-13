@@ -1,0 +1,267 @@
+@use '../../assets/scss/tokens' as *;
+
+// claves-cards — scroll-driven stack (11 estados: 1 intro + 10 tarjetas).
+// Sección altura = states × 100vh; sticky pin interno 100vh.
+// Vars CSS asignadas por script.js: --p (0-1 global), --i (estado actual), --sub (0-1 dentro de estado).
+// Cada card lleva --n (1..10). `--depth: calc(var(--i) - var(--n))` determina su posición en la baraja.
+
+.claves-cards {
+  position: relative;
+  width: 100%;
+  height: calc(var(--states, 11) * 100vh);
+  z-index: 1;
+
+  &__sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    width: 100%;
+    --p: 0;
+    --i: 0;
+    --sub: 0;
+    --stack-offset: 14px;
+    --stack-scale-step: 0.018;
+  }
+
+  // ===== Background (verde fondo-bolas, pinned con __sticky) =====
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    > .fondo-bolas { position: absolute; inset: 0; }
+  }
+
+  // ===== Intro (data-i=0) =====
+  // Layout: icono arriba — texto centro — pixeltag abajo.
+  // Solo el bloque de texto (.intro-text) hace fade-out al avanzar el scroll.
+  // Icono y pixeltag permanecen visibles.
+  &__intro {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 6vh 4vw 3vh;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &__intro-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $space-6;
+    opacity: 1;
+    transition: opacity .45s ease, transform .45s ease;
+    will-change: opacity, transform;
+
+    // Fade-out cuando el primer card aparece (intro pasa a .is-prev: di < i).
+    .claves-cards__intro.is-prev & {
+      opacity: 0;
+      transform: translateY(-32px);
+    }
+  }
+
+  &__icon {
+    width: clamp(56px, calc(80 / 1440 * 100vw), 96px);
+    height: auto;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  &__heading {
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $fw-regular;
+    font-size: clamp(2.5rem, calc(108 / 1440 * 100vw), 108px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    color: $color-text;
+    max-width: 22ch;
+  }
+
+  &__lead {
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $fw-regular;
+    font-size: clamp(1rem, calc(20 / 1440 * 100vw), 22px);
+    line-height: 1.4;
+    color: $color-text;
+    max-width: clamp(40ch, 70vw, 80ch);
+  }
+
+  &__pixeltag {
+    display: block;
+    margin-top: clamp(40px, 6vh, 96px);
+    font-family: $font-family-pixel;
+    font-weight: $fw-bold;
+    font-size: clamp(2rem, calc(120 / 1440 * 100vw), 140px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: $color-text;
+  }
+
+  // ===== Deck (10 tarjetas) =====
+  &__deck {
+    position: absolute;
+    inset: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  // Card shape: outline-only PNG (transparent fill, notch bottom-left).
+  // Layout interno (Figma 1104×426): título arriba-izda, badge arriba-dcha, copy abajo-dcha.
+  &__card {
+    --depth: calc(var(--i, 0) - var(--n, 0));
+
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    width: clamp(320px, calc(1104 / 1440 * 100vw), 1104px);
+    aspect-ratio: 1104 / 426;
+    padding: clamp(20px, calc(40 / 1440 * 100vw), 48px) clamp(20px, calc(56 / 1440 * 100vw), 64px);
+    box-sizing: border-box;
+    background:
+      url('../../assets/img/claves/card.png') no-repeat center / 100% 100%;
+    color: $color-text;
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(16px, 2vw, 32px);
+    row-gap: clamp(12px, 1.5vw, 24px);
+
+    // Off-screen abajo por defecto.
+    transform: translate(-50%, 120vh) scale(1);
+    opacity: 0;
+    z-index: calc(10 + var(--n, 0));
+    transition:
+      transform .55s cubic-bezier(.22, 1, .36, 1),
+      opacity   .35s ease;
+    will-change: transform, opacity;
+
+    // Card activa: en su sitio, visible.
+    &.is-active {
+      opacity: 1;
+      transform: translate(-50%, 50%) scale(1);
+    }
+
+    // Card previa: fade-out en el sitio (la siguiente la reemplaza).
+    &.is-prev {
+      opacity: 0;
+      transform: translate(-50%, calc(50% - 24px)) scale(0.98);
+    }
+  }
+
+  &__title {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+    width: clamp(280px, calc(524 / 1440 * 100vw), 524px);
+    font-family: $font-family-base;
+    font-weight: $fw-regular;
+    font-size: clamp(2rem, calc(60 / 1440 * 100vw), 60px);
+    line-height: 0.9;
+    letter-spacing: -1.726px;
+    color: #000;
+  }
+
+  &__badge {
+    grid-column: 2;
+    grid-row: 1;
+    width: clamp(72px, calc(110 / 1440 * 100vw), 110px);
+    height: clamp(72px, calc(110 / 1440 * 100vw), 110px);
+    border: 1px solid #1d1b1a;
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+    align-self: start;
+    justify-self: end;
+  }
+
+  &__num {
+    font-family: $font-family-pixel;
+    font-weight: $fw-bold;
+    font-size: clamp(2rem, calc(60 / 1440 * 100vw), 60px);
+    line-height: 1;
+    letter-spacing: 2px;
+    color: #000;
+    text-align: center;
+  }
+
+  &__copy {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 0;
+    width: clamp(260px, calc(442 / 1440 * 100vw), 442px);
+    justify-self: end;
+    align-self: end;
+    font-family: $font-family-base;
+    font-weight: $fw-medium;
+    font-size: clamp(0.875rem, calc(18 / 1440 * 100vw), 18px);
+    line-height: 1.4;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: #000;
+  }
+
+  // ===== Mobile: degrada a stack vertical, sin scroll-driven =====
+  @media (max-width: $bp-md) {
+    height: auto;
+
+    &__sticky {
+      position: static;
+      height: auto;
+      overflow: visible;
+      padding: $space-10 $space-5;
+    }
+
+    &__intro {
+      position: static;
+      padding: 0 0 $space-10;
+      gap: $space-6;
+    }
+
+    &__intro-text {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    &__heading { font-size: clamp(2rem, 9vw, 3rem); }
+
+    &__deck {
+      position: static;
+      display: flex;
+      flex-direction: column;
+      gap: $space-6;
+    }
+
+    &__card {
+      position: relative;
+      left: auto;
+      bottom: auto;
+      transform: none !important;
+      opacity: 1 !important;
+      width: 100%;
+      max-width: 480px;
+      margin-inline: auto;
+      aspect-ratio: auto;
+    }
+  }
+
+  // Motion reducida
+  @media (prefers-reduced-motion: reduce) {
+    &__intro-text, &__card { transition: none !important; }
+  }
+}

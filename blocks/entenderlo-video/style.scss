@@ -47,12 +47,17 @@
   // Spec Figma 116:2031: 1285×536. El PNG Default trae baked el shape (notches + "+").
   // En hover: zoom 1.05 del poster + label "VER VÍDEO" centrado (mismo
   // tipo/forma que hero-secundario · balcon).
+  // --card-shift-y / --card-shift-x: desplazan SOLO el vídeo (negativo = sube / izq).
+  // El heading no se mueve. Layout space se conserva (usa transform).
   &__card {
+    --card-shift-y: -80px;
+    --card-shift-x: 50px;
     position: relative;
     display: block;
     width: 100%;
     aspect-ratio: 1285 / 536;
     margin: 0;
+    transform: translate(var(--card-shift-x), var(--card-shift-y));
     padding: 0;
     border: 0;
     background: transparent;

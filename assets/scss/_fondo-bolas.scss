@@ -74,11 +74,43 @@
     background-size: cover;
     background-position: center;
     mix-blend-mode: overlay;
-    opacity: 0.35;
+    opacity: 0.65;
   }
 
   @media (prefers-reduced-motion: reduce) {
     &__bola, &__blob { animation: none; }
+  }
+
+  // Variant verde (módulo "Claves"): copia 1:1 del hero, solo cambian colores.
+  // Original (hero):           verde equivalente:
+  //   bg:    #abd8fc azul         #7ecd93 verde base
+  //   bola:  #cbc7ff lavanda      #6acbf0 cian
+  //   gradient blue+lavender+blue → green+mint+green (dual-hue idéntico estructuralmente)
+  &--verde {
+    background: #7ecd93;
+
+    .fondo-bolas__gradient {
+      background:
+        radial-gradient(
+          ellipse 75% 65% at 71% 39%,
+          #87daa1 0%,
+          #c2ead5 50%,
+          #8edaa5 100%
+        ),
+        linear-gradient(
+          104.893deg,
+          #84d59c 13.233%,
+          #c5e9d2 30.197%,
+          #92d8a7 76.51%
+        );
+    }
+
+    .fondo-bolas__bola { background: #6acbf0; }
+
+    // Sobre verde el grano se percibe menos que sobre azul (overlay actúa
+    // distinto según luminancia base). Subimos opacidad para igualar
+    // visualmente el efecto del hero.
+    .fondo-bolas__mask { opacity: 0.9; }
   }
 }
 
