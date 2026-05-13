@@ -13,6 +13,5 @@
     "anchor": true
   },
   "render": "file:./render.php",
-  "viewScript": "file:./script.js",
   "textdomain": "farmaindustria"
 }

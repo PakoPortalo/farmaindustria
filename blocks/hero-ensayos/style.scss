@@ -23,16 +23,7 @@
     width: 100%;
     max-width: 1287.88px;
     margin: 0;
-    // Estado inicial: oculto (curtain abajo). La animación arranca cuando
-    // script.js añade `.is-ready` al section (window load + fonts ready).
-    clip-path: inset(100% 0 0 0);
-    transform: translateY(24px);
-    will-change: clip-path, transform;
     img { width: 100%; height: auto; display: block; }
-  }
-
-  &.is-ready &__logo {
-    animation: hero-ensayos-curtain 1.4s cubic-bezier(.16, .84, .26, 1) both;
   }
 
   &__claim {
@@ -78,22 +69,4 @@
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    &__logo {
-      animation: none;
-      clip-path: inset(0);
-      transform: none;
-    }
-  }
-}
-
-@keyframes hero-ensayos-curtain {
-  from {
-    clip-path: inset(100% 0 0 0);
-    transform: translateY(24px);
-  }
-  to {
-    clip-path: inset(0);
-    transform: translateY(0);
-  }
 }

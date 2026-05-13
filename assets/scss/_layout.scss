@@ -14,16 +14,6 @@
   &--home { padding-block: 0; min-height: auto; }
 }
 
-// Bloqueo de scroll durante la curtain reveal del hero +ensayos.
-// blocks/hero-ensayos/script.js añade/retira `.is-hero-locked` en <html>.
-html.is-hero-locked,
-html.is-hero-locked body {
-  overflow: hidden;
-  height: 100%;
-  touch-action: none;
-  overscroll-behavior: none;
-}
-
 // Apila heroes con fondo bolas compartido (continuidad vertical sin corte).
 .home-hero-stack {
   position: relative;
