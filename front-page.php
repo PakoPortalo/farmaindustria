@@ -61,6 +61,7 @@ get_header();
     <?php
     $claves_blocks = [
         ['blockName' => 'fi/claves-cards', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
+        ['blockName' => 'fi/banners',      'attrs' => ['align' => 'full', 'variant' => 'contacto'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
     ];
     foreach ($claves_blocks as $block) {
         echo render_block($block);
@@ -69,7 +70,7 @@ get_header();
 
     <?php
     // TODO: añadir aquí el resto de bloques del home conforme se monten:
-    // espana-lider, claves-expandido, clave1, banners-cta.
+    // espana-lider, claves-expandido, clave1.
     ?>
 </main>
 

@@ -1,0 +1,193 @@
+@use '../../assets/scss/tokens' as *;
+
+// banners — bloque CTA full-width con marquee de fondo y botón glassmorphic.
+// Spec Figma: frame 7:868 (1440×246, padding 79/110).
+// BG: linear-gradient 228.65deg, #cbc7ff 30% → #abd8fc 99.7%.
+
+.banners {
+  position: relative;
+  width: 100%;
+
+  &__inner {
+    position: relative;
+    overflow: hidden;
+    min-height: clamp(180px, calc(246 / 1440 * 100vw), 300px);
+    padding:
+      clamp(40px, calc(79 / 1440 * 100vw), 96px)
+      clamp(20px, calc(110 / 1440 * 100vw), 140px);
+    background: linear-gradient(
+      228.65deg,
+      #cbc7ff 30.011%,
+      #abd8fc 99.739%
+    );
+    display: flex;
+    align-items: center;
+  }
+
+  // ===== Marquee (layer fondo) =====
+  &__marquee {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &__marquee-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    padding-inline: 10px;
+    animation: banners-marquee 30s linear infinite;
+    will-change: transform;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  &__marquee-text {
+    flex-shrink: 0;
+    font-family: $font-family-dmsans;
+    font-weight: $fw-regular;
+    font-size: clamp(60px, calc(120 / 1440 * 100vw), 140px);
+    line-height: 0.9;
+    letter-spacing: -5px;
+    color: #fff;
+    opacity: 0.1;
+    white-space: nowrap;
+  }
+
+  // ===== Foreground content =====
+  &__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(24px, 4vw, 64px);
+  }
+
+  &__lead {
+    margin: 0;
+    width: clamp(280px, calc(486 / 1440 * 100vw), 486px);
+    font-family: $font-family-base;
+    font-weight: $fw-regular;
+    font-size: clamp(18px, calc(32 / 1440 * 100vw), 36px);
+    line-height: 1;
+    letter-spacing: -0.03em; // -0.96px @ 32px
+    color: #fff;
+  }
+
+  // ===== Botón XL =====
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(8px, calc(13.5 / 1440 * 100vw), 16px);
+    padding:
+      clamp(16px, calc(27 / 1440 * 100vw), 32px)
+      clamp(24px, calc(40 / 1440 * 100vw), 48px);
+    border: 1.7px solid #fff;
+    border-radius: 999px;
+    background: rgba(19, 5, 68, 0.1);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: $font-family-dmsans;
+    font-weight: $fw-medium;
+    font-size: clamp(14px, calc(27 / 1440 * 100vw), 30px);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    transition: background-color .25s ease;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(19, 5, 68, 0.18);
+    }
+    &:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 4px;
+    }
+  }
+
+  // Roll vertical: dos copias apiladas, hover sube ambas -100%.
+  &__cta-label {
+    position: relative;
+    display: block;
+    height: 1em;
+    overflow: hidden;
+    line-height: 1;
+  }
+
+  &__cta-text {
+    display: block;
+    transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+
+    &:nth-child(2) {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  &__cta:hover &__cta-text,
+  &__cta:focus-visible &__cta-text {
+    transform: translateY(-100%);
+  }
+
+  &__cta-arrow {
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    width: clamp(22px, calc(34 / 1440 * 100vw), 38px);
+    height: clamp(22px, calc(34 / 1440 * 100vw), 38px);
+    overflow: hidden;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+
+      &:nth-child(2) {
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+    }
+  }
+
+  &__cta:hover &__cta-arrow img,
+  &__cta:focus-visible &__cta-arrow img {
+    transform: translateY(-100%);
+  }
+
+  // ===== Mobile =====
+  @media (max-width: $bp-md) {
+    &__inner {
+      padding: $space-8 $space-5;
+    }
+    &__content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $space-6;
+    }
+    &__lead { width: 100%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__cta-text, &__cta-arrow img { transition: none; }
+  }
+}
+
+@keyframes banners-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}

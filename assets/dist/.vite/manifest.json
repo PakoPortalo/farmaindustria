@@ -1,4 +1,12 @@
 {
+  "assets/fonts/dm-sans/dm-sans-latin-ext.woff2": {
+    "file": "fonts/dm-sans-latin-ext.BOFOeGcA.woff2",
+    "src": "assets/fonts/dm-sans/dm-sans-latin-ext.woff2"
+  },
+  "assets/fonts/dm-sans/dm-sans-latin.woff2": {
+    "file": "fonts/dm-sans-latin.Xz1IZZA0.woff2",
+    "src": "assets/fonts/dm-sans/dm-sans-latin.woff2"
+  },
   "assets/fonts/offbit/offbit-101-bold.woff2": {
     "file": "fonts/offbit-101-bold.Da1i9TCM.woff2",
     "src": "assets/fonts/offbit/offbit-101-bold.woff2"
@@ -74,7 +82,7 @@
     "isEntry": true
   },
   "assets/scss/main.scss": {
-    "file": "css/styles.Com_wrNh.css",
+    "file": "css/styles.BJ7oprtc.css",
     "src": "assets/scss/main.scss",
     "isEntry": true
   }

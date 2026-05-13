@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "fi/banners",
+  "title": "Banners (CTA marquee)",
+  "category": "design",
+  "icon": "megaphone",
+  "description": "Banner CTA full-width con marquee de fondo (¿Aún con dudas?) y botón glassmorphic. Variantes: contacto.",
+  "keywords": ["banner", "cta", "marquee", "contacto"],
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "variant": { "type": "string", "default": "contacto" }
+  },
+  "render": "file:./render.php",
+  "textdomain": "farmaindustria"
+}
