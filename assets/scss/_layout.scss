@@ -102,6 +102,23 @@
   }
 }
 
+// Stack pre-footer: nube de logos + banner CTA con gradiente continuo
+// (sin corte de color entre los dos bloques).
+.home-footer-stack {
+  position: relative;
+  background: linear-gradient(
+    228.65deg,
+    #cbc7ff 30.011%,
+    #abd8fc 99.739%
+  );
+
+  // Banners trae su propio gradiente — lo neutralizamos aquí para que el
+  // del wrapper sea el único visible y la transición no tenga seam.
+  > .banners > .banners__inner {
+    background: transparent;
+  }
+}
+
 .site-header {
   border-bottom: 1px solid $color-border;
   background: $color-bg;

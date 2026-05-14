@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "fi/logos-cloud",
+  "title": "Nube de logos (pre-footer)",
+  "category": "design",
+  "icon": "screenoptions",
+  "description": "Sección full-width con la nube de logos de Farmaindustria sobre el mismo fondo gradiente que el banner-CTA, para enlazar visualmente con el footer.",
+  "keywords": ["logos", "footer", "farmaindustria", "nube"],
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "anchor": true
+  },
+  "render": "file:./render.php",
+  "textdomain": "farmaindustria"
+}

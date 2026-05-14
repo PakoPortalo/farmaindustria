@@ -1,0 +1,53 @@
+@use '../../assets/scss/tokens' as *;
+
+// logos-cloud — sección pre-footer con nube de logos Farmaindustria.
+// Mismo gradiente que el bloque banners para continuidad visual.
+
+.logos-cloud {
+  position: relative;
+  width: 100%;
+  background: transparent;
+
+  // === Variables fáciles de tocar ===
+  // --logos-max-width: ancho máximo del PNG (cuánto ocupa la nube de logos).
+  // --logos-pad-top / --logos-pad-bottom: espacio arriba / abajo del bloque.
+  --logos-max-width: 800px;
+  --logos-pad-top: -20px;
+  --logos-pad-bottom: 50px;
+
+  &__inner {
+    max-width: 1440px;
+    margin-inline: auto;
+    // top via margin (acepta negativos para solapar con bloque de arriba);
+    // bottom via padding (espacio interno bajo la imagen).
+    margin-top: var(--logos-pad-top);
+    padding: 0 clamp(24px, calc(110 / 1440 * 100vw), 140px) var(--logos-pad-bottom);
+    display: flex;
+    justify-content: center;
+  }
+
+  &__img {
+    width: 100%;
+    max-width: var(--logos-max-width);
+    height: auto;
+    display: block;
+    // PNG con fondo blanco + logos negros.
+    // multiply: blanco → transparente, negro → permanece negro.
+    mix-blend-mode: multiply;
+  }
+
+  // Modificador opcional: cambia "fi/logos-cloud" en front-page.php a
+  // ['attrs' => ['className' => 'logos-cloud--invert']] o añade la clase
+  // a mano en el editor para invertir colores (logos blancos sobre gradiente).
+  &--invert &__img {
+    filter: invert(1);
+    mix-blend-mode: screen;
+  }
+
+  @media (max-width: $bp-md) {
+    &__inner {
+      margin-top: var(--logos-pad-top);
+      padding: 0 $space-5 var(--logos-pad-bottom);
+    }
+  }
+}

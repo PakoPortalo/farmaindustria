@@ -59,14 +59,20 @@ get_header();
     </div>
 
     <?php
-    $claves_blocks = [
-        ['blockName' => 'fi/claves-cards', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
-        ['blockName' => 'fi/banners',      'attrs' => ['align' => 'full', 'variant' => 'contacto'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
-    ];
-    foreach ($claves_blocks as $block) {
-        echo render_block($block);
-    }
+    echo render_block(['blockName' => 'fi/claves-cards', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []]);
     ?>
+
+    <div class="home-footer-stack">
+        <?php
+        $footer_blocks = [
+            ['blockName' => 'fi/banners',     'attrs' => ['align' => 'full', 'variant' => 'contacto'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
+            ['blockName' => 'fi/logos-cloud', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []],
+        ];
+        foreach ($footer_blocks as $block) {
+            echo render_block($block);
+        }
+        ?>
+    </div>
 
     <?php
     // TODO: añadir aquí el resto de bloques del home conforme se monten:
