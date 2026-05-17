@@ -28,12 +28,12 @@ $fotos     = [$foto_1, $foto_2, $foto_1, $foto_2, $foto_1, $foto_2];
 $palabras = ['+Innovación', '+Calidad de vida', '+Oportunidades', '+Tratamientos', '+Liderazgo', '+Talento'];
 
 $captions = [
-    'Impulsamos la investigación que transforma el conocimiento científico en más soluciones terapéuticas para la salud de las personas.',
-    'Buscamos evidencias que permitan alcanzar mejores resultados en su salud y bienestar.',
-    'Abrimos nuevas vías de investigación con medicamentos para quienes hoy aún no tienen respuestas.',
-    'Aceleramos la investigación para disponer de nuevos y mejores medicamentos para que el avance científico llegue al paciente en el menor tiempo posible.',
-    'Trabajamos para que España siga siendo un referente en investigación clínica mundial, a pesar de la fuerte competencia internacional.',
-    'Reconocemos y apoyamos a los profesionales y equipos multidisciplinares que hacen posible cada avance científico.',
+    'Impulsamos una investigación que transforma la ciencia y el conocimiento en soluciones reales para la salud.',
+    'Trabajamos para mejorar el bienestar y la longevidad de las personas mediante la investigación clínica.',
+    'Generamos oportunidades de desarrollo profesional, científico y empresarial en el sector biomédico.',
+    'Aceleramos la llegada de nuevos tratamientos a los pacientes que más los necesitan.',
+    'Posicionamos a España como referente internacional en investigación clínica y biomédica.',
+    'Atraemos y retenemos el talento científico necesario para liderar el futuro de la salud.',
 ];
 
 $states = count($palabras);
