@@ -60,6 +60,7 @@ get_header();
 
     <?php
     echo render_block(['blockName' => 'fi/claves-cards', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []]);
+    echo render_block(['blockName' => 'fi/espana-lider', 'attrs' => ['align' => 'full'], 'innerBlocks' => [], 'innerHTML' => '', 'innerContent' => []]);
     ?>
 
     <div class="home-footer-stack">
@@ -76,7 +77,7 @@ get_header();
 
     <?php
     // TODO: añadir aquí el resto de bloques del home conforme se monten:
-    // espana-lider, claves-expandido, clave1.
+    // claves-expandido, clave1.
     ?>
 </main>
 

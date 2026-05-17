@@ -1,0 +1,120 @@
+@use '../../assets/scss/tokens' as *;
+
+// España, referente mundial — bloque final del home.
+// Heading grande + grid de stats (1 destacada + 3 secundarias) + párrafo.
+
+.espana-lider {
+  position: relative;
+  width: 100%;
+  background: $color-bg;
+  padding-block: calc(120 / 1440 * 100vw);
+
+  @media (min-width: $bp-2xl) { padding-block: 120px; }
+  @media (max-width: $bp-md)  { padding-block: $space-10; }
+
+  &__inner {
+    width: 100%;
+    max-width: $design-width;
+    margin-inline: auto;
+    padding-inline: calc(74 / 1440 * 100%);
+  }
+
+  &__heading {
+    margin: 0 0 calc(60 / 1440 * 100vw);
+    max-width: calc(900 / 1290 * 100%);
+    font-family: $font-family-base;
+    font-weight: $fw-regular;
+    font-size: calc(64 / 1440 * 100vw);
+    line-height: 1.05;
+    letter-spacing: calc(-3 / 1440 * 100vw);
+    color: $color-primary;
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: calc(32 / 1440 * 100vw);
+    margin: 0 0 calc(60 / 1440 * 100vw);
+    padding: 0;
+    list-style: none;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    gap: calc(8 / 1440 * 100vw);
+    padding: calc(28 / 1440 * 100vw) calc(24 / 1440 * 100vw);
+    border-radius: calc(20 / 1440 * 100vw);
+    background: $color-bg-alt;
+    border: 1px solid $color-border;
+
+    &--main {
+      background: $color-primary;
+      border-color: $color-primary;
+      color: $color-bg;
+    }
+  }
+
+  &__num {
+    font-family: $font-family-base;
+    font-weight: $fw-semibold;
+    font-size: calc(56 / 1440 * 100vw);
+    line-height: 1;
+    letter-spacing: calc(-2 / 1440 * 100vw);
+    color: inherit;
+
+    .espana-lider__stat:not(.espana-lider__stat--main) & {
+      color: $color-primary;
+    }
+  }
+
+  &__label {
+    font-family: $font-family-base;
+    font-weight: $fw-medium;
+    font-size: calc(18 / 1440 * 100vw);
+    line-height: 1.3;
+    color: inherit;
+  }
+
+  &__pct {
+    display: inline-block;
+    margin-top: calc(4 / 1440 * 100vw);
+    font-weight: $fw-regular;
+    opacity: 0.8;
+  }
+
+  &__paragraph {
+    margin: 0;
+    max-width: calc(1100 / 1290 * 100%);
+    font-family: $font-family-base;
+    font-weight: $fw-medium;
+    font-size: calc(22 / 1440 * 100vw);
+    line-height: 1.4;
+    letter-spacing: calc(-0.5 / 1440 * 100vw);
+    color: $color-text;
+  }
+
+  @media (min-width: $bp-2xl) {
+    &__heading    { font-size: 64px; letter-spacing: -3px; margin-bottom: 60px; }
+    &__stats      { gap: 32px; margin-bottom: 60px; }
+    &__stat       { padding: 28px 24px; border-radius: 20px; gap: 8px; }
+    &__num        { font-size: 56px; letter-spacing: -2px; }
+    &__label      { font-size: 18px; }
+    &__pct        { margin-top: 4px; }
+    &__paragraph  { font-size: 22px; letter-spacing: -0.5px; }
+  }
+
+  @media (max-width: $bp-lg) {
+    &__stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: $bp-md) {
+    &__inner      { padding-inline: $space-5; }
+    &__heading    { font-size: clamp(2rem, 7vw, 3rem); letter-spacing: -0.04em; margin-bottom: $space-6; }
+    &__stats      { grid-template-columns: 1fr; gap: $space-4; margin-bottom: $space-6; }
+    &__stat       { padding: $space-5; border-radius: 16px; }
+    &__num        { font-size: clamp(2.25rem, 9vw, 3.25rem); letter-spacing: -0.02em; }
+    &__label      { font-size: 1rem; }
+    &__paragraph  { font-size: clamp(1rem, 3vw, 1.2rem); letter-spacing: -0.01em; }
+  }
+}

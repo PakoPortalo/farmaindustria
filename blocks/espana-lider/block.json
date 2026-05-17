@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "fi/espana-lider",
+  "title": "España, referente mundial",
+  "category": "design",
+  "icon": "chart-bar",
+  "description": "Bloque final del home con datos de liderazgo de España en ensayos clínicos en la UE.",
+  "keywords": ["espana", "lider", "ensayos", "datos", "ue"],
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "anchor": true
+  },
+  "render": "file:./render.php",
+  "textdomain": "farmaindustria"
+}

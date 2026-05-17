@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 366 457" preserveAspectRatio="none">
+  <!-- Tarjeta testimonio: rect redondeado 20px arriba + borde inferior ondulado
+       (≈7 picos suaves). Basado en screenshot de preview Figma. -->
+  <path fill="#000" d="
+    M 20,0
+    L 346,0
+    Q 366,0 366,20
+    L 366,412
+    C 357,425 340,416 322,425
+    C 304,440 286,420 268,432
+    C 250,420 232,440 214,428
+    C 196,440 178,420 160,432
+    C 142,420 124,440 106,428
+    C 88,440 70,420 52,432
+    C 34,420 16,440 6,425
+    C 0,420 0,420 0,410
+    L 0,20
+    Q 0,0 20,0
+    Z
+  "/>
+</svg>

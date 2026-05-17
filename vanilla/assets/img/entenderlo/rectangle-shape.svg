@@ -1,0 +1,17 @@
+<svg width="462" height="520" viewBox="0 0 462 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#testimonio-shadow)">
+    <path d="M85.6167 98.6088C96.5912 99.8609 106.503 91.9794 107.755 81.0049L108.252 76.6442C109.505 65.6698 119.416 57.7882 130.391 59.0404L141.711 60.3319C152.685 61.584 162.597 53.7025 163.849 42.728L164.304 38.7347C165.557 27.7603 175.468 19.8787 186.443 21.1309L418.955 47.659C429.929 48.9112 437.811 58.8228 436.558 69.7973L400.578 385.156C399.326 396.131 389.414 404.012 378.44 402.76L368.179 401.59C357.205 400.338 347.293 408.219 346.041 419.194L344.724 430.743C343.471 441.717 333.56 449.599 322.585 448.346L311.407 447.071C300.432 445.819 290.521 453.7 289.269 464.675L288.4 472.289C287.148 483.263 277.236 491.145 266.262 489.893L42.734 464.39C31.7595 463.138 23.8779 453.226 25.13 442.251L62.3438 116.083C63.596 105.109 73.5076 97.2272 84.4821 98.4793L85.6167 98.6088Z" fill="white"/>
+  </g>
+  <defs>
+    <filter id="testimonio-shadow" x="0" y="0" width="461.689" height="519.023" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="12.5"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+    </filter>
+  </defs>
+</svg>
