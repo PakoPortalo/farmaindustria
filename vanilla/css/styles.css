@@ -281,10 +281,7 @@ ul, ol {
 
 .home-footer-stack {
   position: relative;
-  background: linear-gradient(228.65deg, #cbc7ff 30.01%, #abd8fc 99.74%);
-}
-.home-footer-stack > .banners > .banners__inner {
-  background: transparent;
+  background: #ffffff;
 }
 
 .site-header {
@@ -772,15 +769,33 @@ ul, ol {
   }
 }
 @media (max-width: 768px) {
+  /* Bloque 2 Figma — Hero "Para que la investigación…" 48px / 0.9 / -2.4259px */
   .hero-ensayos__inner {
     aspect-ratio: auto;
-    padding-block: 2rem 3rem;
+    padding-block: clamp(28px, calc(40 / 375 * 100vw), 40px) clamp(28px, calc(40 / 375 * 100vw), 40px);
+    padding-inline: clamp(16px, calc(20 / 375 * 100vw), 20px);
+  }
+  .hero-ensayos__logo {
+    margin-bottom: clamp(40px, calc(64 / 375 * 100vw), 64px);
   }
   .hero-ensayos__claim {
     position: static;
-    margin-top: 1.5rem;
-    font-size: clamp(2.25rem, 9vw, 3.5rem);
-    letter-spacing: -0.04em;
+    margin-top: clamp(20px, calc(32 / 375 * 100vw), 32px);
+    font-family: "Switzer", system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: clamp(40px, calc(48 / 375 * 100vw), 48px);
+    line-height: 0.9;
+    letter-spacing: clamp(-2.4259px, calc(-2.4259 / 375 * 100vw), -2.06px);
+    color: #000;
+  }
+  .hero-ensayos__line {
+    display: block;
+  }
+  .hero-ensayos__mark {
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.05em;
   }
 }
 
@@ -878,20 +893,24 @@ ul, ol {
 @media (max-width: 768px) {
   .hero-secundario {
     aspect-ratio: auto;
-    padding-block: 2rem;
+    padding: 2rem clamp(16px, calc(20 / 375 * 100vw), 24px);
   }
   .hero-secundario__trigger {
-    position: static;
+    position: relative;
+    left: auto;
+    top: auto;
     transform: none;
     width: 100%;
     aspect-ratio: 1285/536;
   }
   .hero-secundario__cta {
-    position: static;
-    transform: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     opacity: 1;
-    margin-top: 0.75rem;
     text-align: center;
+    font-size: clamp(14px, calc(16 / 375 * 100vw), 18px);
   }
 }
 
@@ -907,8 +926,38 @@ ul, ol {
   }
 }
 @media (max-width: 768px) {
+  /* Bloques 3 y 4 Figma — Headline "+ensayos es un compromiso…" 34px/0.9/-2.5278px y párrafo 18px/1.3/-0.5px */
   .intro-compromiso {
     margin-top: 0;
+  }
+  .intro-compromiso__inner {
+    padding-inline: clamp(16px, calc(21 / 375 * 100vw), 21px);
+    padding-block: clamp(32px, calc(48 / 375 * 100vw), 48px) clamp(24px, calc(40 / 375 * 100vw), 40px);
+  }
+  .intro-compromiso__heading {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: clamp(280px, calc(333 / 375 * 100vw), 333px);
+    text-align: center;
+    font-family: "Switzer", system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, calc(34 / 375 * 100vw), 34px);
+    line-height: 0.9;
+    letter-spacing: clamp(-2.5278px, calc(-2.5278 / 375 * 100vw), -2.14px);
+    color: #000;
+    margin-bottom: clamp(20px, calc(28 / 375 * 100vw), 28px);
+  }
+  .intro-compromiso__paragraph {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: clamp(280px, calc(335 / 375 * 100vw), 335px);
+    text-align: center;
+    font-family: "Switzer", system-ui, -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: clamp(15px, calc(18 / 375 * 100vw), 18px);
+    line-height: 1.3;
+    letter-spacing: clamp(-0.5px, calc(-0.5 / 375 * 100vw), -0.42px);
+    color: #000;
   }
 }
 .intro-compromiso__inner {
@@ -1207,54 +1256,122 @@ ul, ol {
   }
 }
 @media (max-width: 768px) {
-  .innovacion-stack {
-    height: auto;
-  }
+  /* Bloque 7 Figma móvil — sticky scroll: 2 fotos fijas + word/caption que cambian */
   .innovacion-stack__sticky {
-    position: static;
-    height: auto;
-    overflow: visible;
+    padding: 0;
   }
-  .innovacion-stack__photos, .innovacion-stack__center {
-    position: static;
+  .innovacion-stack__photos {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
   }
   .innovacion-stack__photo {
-    position: relative;
+    transition: none;
+  }
+  .innovacion-stack__photo[data-i="0"] {
     opacity: 1;
-    transform: none;
-    padding: 2rem 1.5rem;
-    align-items: center;
-    justify-content: center;
+    top: -32px;
+    left: 0;
+    bottom: auto;
+    right: auto;
+    width: clamp(260px, calc(310 / 375 * 100vw), 310px);
+    aspect-ratio: 310/340;
+    --shift-y: 0%;
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.22));
+    transition: opacity 0.45s ease;
+  }
+  .innovacion-stack__photo[data-i="1"] {
+    opacity: 0.45;
+    bottom: 0;
+    right: 0;
+    top: auto;
+    left: auto;
+    width: clamp(220px, calc(280 / 375 * 100vw), 280px);
+    aspect-ratio: 280/320;
+    --shift-y: 0%;
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.22));
+    transition: opacity 0.45s ease;
+  }
+  .innovacion-stack__sticky.is-state-odd .innovacion-stack__photo[data-i="0"] {
+    opacity: 0.45;
+  }
+  .innovacion-stack__sticky.is-state-odd .innovacion-stack__photo[data-i="1"] {
+    opacity: 1;
+  }
+  .innovacion-stack__photo[data-i="2"],
+  .innovacion-stack__photo[data-i="3"],
+  .innovacion-stack__photo[data-i="4"],
+  .innovacion-stack__photo[data-i="5"] {
+    display: none;
   }
   .innovacion-stack__photo img {
-    width: 70vw;
-    max-width: 360px;
+    transform: none;
+  }
+  .innovacion-stack__center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-inline: clamp(16px, calc(21 / 375 * 100vw), 21px);
+    z-index: 2;
   }
   .innovacion-stack__words {
-    height: auto;
-    margin-top: 2rem;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    width: 100%;
+    height: clamp(80px, calc(96 / 375 * 100vw), 96px);
+    max-height: none;
+    padding: 0;
+    margin-bottom: -20px;
   }
   .innovacion-stack__word {
-    position: relative;
-    clip-path: inset(0);
-    font-size: clamp(2.5rem, 12vw, 4.5rem);
-    letter-spacing: -0.04em;
+    left: 0;
+    right: 0;
+    padding-inline: 0;
+    font-family: "OffBit", "Pixelify Sans", "Switzer", monospace;
+    font-weight: 700;
+    font-size: clamp(28px, calc(40 / 375 * 100vw), 48px);
+    line-height: 0.9;
+    letter-spacing: clamp(-0.4px, calc(-0.5 / 375 * 100vw), -0.3px);
+    color: #000;
     white-space: normal;
-    display: block;
-    transform: none;
-    margin-bottom: 1rem;
+    overflow-wrap: normal;
+    text-align: center;
+    text-wrap: balance;
   }
   .innovacion-stack__captions {
-    margin-top: 1rem;
-    min-height: auto;
-  }
-  .innovacion-stack__caption {
     position: relative;
-    opacity: 1;
-    transform: none;
-    font-size: 1rem;
-    letter-spacing: -0.01em;
-    margin-bottom: 2rem;
+    inset: auto;
+    width: 100%;
+    min-height: clamp(90px, calc(110 / 375 * 100vw), 110px);
+  }
+  .innovacion-stack__caption,
+  .innovacion-stack__caption[data-i="0"],
+  .innovacion-stack__caption[data-i="1"],
+  .innovacion-stack__caption[data-i="2"],
+  .innovacion-stack__caption[data-i="3"],
+  .innovacion-stack__caption[data-i="4"],
+  .innovacion-stack__caption[data-i="5"] {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: clamp(280px, calc(330 / 375 * 100vw), 330px);
+    margin: 0;
+    font-family: "Switzer", system-ui, -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: clamp(15px, calc(18 / 375 * 100vw), 18px);
+    line-height: 1.3;
+    letter-spacing: clamp(-0.5px, calc(-0.5 / 375 * 100vw), -0.42px);
+    color: #000;
+    text-align: center;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1476,21 +1593,38 @@ ul, ol {
   }
 }
 @media (max-width: 768px) {
-  .entenderlo {
-    padding-block: 4rem;
+  /* Bloques 9 y 10 Figma — Quote "La mejor manera de entenderlo…" 65.015px/0.9/-4.1382px (línea 1 Regular, línea 2 Light) */
+  .entenderlo__inner {
+    padding-inline: clamp(12px, calc(16 / 375 * 100vw), 16px);
+    padding-block: clamp(64px, calc(96 / 375 * 100vw), 96px);
+  }
+  .entenderlo__smiley {
+    width: clamp(56px, calc(71 / 375 * 100vw), 71px);
+    margin: 0 0 clamp(20px, calc(28 / 375 * 100vw), 28px);
   }
   .entenderlo__heading {
-    font-size: clamp(2rem, 9vw, 3.5rem);
-    letter-spacing: -0.04em;
+    font-family: "Switzer", system-ui, -apple-system, sans-serif;
+    font-size: clamp(52px, calc(65.015 / 375 * 100vw), 65.015px);
+    line-height: 0.9;
+    letter-spacing: clamp(-4.1382px, calc(-4.1382 / 375 * 100vw), -3.52px);
+    color: #000;
+    max-width: clamp(300px, calc(363 / 375 * 100vw), 363px);
+    margin-inline: auto;
+  }
+  .entenderlo__heading-line--top {
+    font-weight: 400;
+  }
+  .entenderlo__heading-line--bot {
+    font-weight: 300;
   }
   .entenderlo__cta {
-    width: 140px;
-    height: 140px;
-    margin-top: 2rem;
+    width: clamp(120px, calc(142.25 / 375 * 100vw), 142.25px);
+    height: clamp(120px, calc(142.25 / 375 * 100vw), 142.25px);
+    margin-top: clamp(28px, calc(40 / 375 * 100vw), 40px);
   }
   .entenderlo__cta-icon {
-    width: 72px;
-    height: 72px;
+    width: clamp(60px, calc(73.383 / 375 * 100vw), 73.383px);
+    height: clamp(60px, calc(73.383 / 375 * 100vw), 73.383px);
   }
   .entenderlo__cta-icon img {
     width: 36px;
@@ -1623,13 +1757,25 @@ ul, ol {
   }
 }
 @media (max-width: 768px) {
+  /* entenderlo-video — sin spec literal en Figma móvil, se mantiene escala fluid coherente */
   .entenderlo-video__inner {
-    padding-block: 0 4rem;
+    padding-inline: clamp(16px, calc(21 / 375 * 100vw), 21px);
+    padding-block: 0 clamp(48px, calc(64 / 375 * 100vw), 64px);
   }
   .entenderlo-video__heading {
-    font-size: clamp(1.75rem, 7vw, 2.5rem);
+    font-size: clamp(28px, calc(40 / 375 * 100vw), 40px);
     letter-spacing: -0.03em;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(20px, calc(32 / 375 * 100vw), 32px);
+  }
+  .entenderlo-video__card {
+    transform: none;
+    aspect-ratio: 365/252;
+  }
+  .entenderlo-video__media {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 365 252'%3E%3Cpath fill='white' d='M358.731 0C361.864 0 364.403 2.53928 364.403 5.67164V208.399C364.403 211.531 361.864 214.071 358.731 214.071H351.968C348.835 214.071 346.296 216.61 346.296 219.742V227.647C346.296 230.779 343.757 233.318 340.624 233.318H191.268C188.136 233.319 185.596 235.858 185.596 238.99V246.328C185.596 249.461 183.057 252 179.925 252H20.9494C17.817 252 15.2777 249.461 15.2777 246.328V240.972C15.2777 237.839 12.7384 235.3 9.60607 235.3H5.67164C2.53932 235.3 0 232.761 0 229.628V44.7331C0 41.6008 2.53928 39.0615 5.67164 39.0615H11.8695C15.0018 39.0615 17.5411 36.5222 17.5411 33.3899V25.3438C17.5412 22.2115 20.0804 19.6721 23.2127 19.6721H198.246C201.378 19.6721 203.918 17.1328 203.918 14.0005V5.67164C203.918 2.53928 206.457 0 209.589 0H358.731Z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 365 252'%3E%3Cpath fill='white' d='M358.731 0C361.864 0 364.403 2.53928 364.403 5.67164V208.399C364.403 211.531 361.864 214.071 358.731 214.071H351.968C348.835 214.071 346.296 216.61 346.296 219.742V227.647C346.296 230.779 343.757 233.318 340.624 233.318H191.268C188.136 233.319 185.596 235.858 185.596 238.99V246.328C185.596 249.461 183.057 252 179.925 252H20.9494C17.817 252 15.2777 249.461 15.2777 246.328V240.972C15.2777 237.839 12.7384 235.3 9.60607 235.3H5.67164C2.53932 235.3 0 232.761 0 229.628V44.7331C0 41.6008 2.53928 39.0615 5.67164 39.0615H11.8695C15.0018 39.0615 17.5411 36.5222 17.5411 33.3899V25.3438C17.5412 22.2115 20.0804 19.6721 23.2127 19.6721H198.246C201.378 19.6721 203.918 17.1328 203.918 14.0005V5.67164C203.918 2.53928 206.457 0 209.589 0H358.731Z'/%3E%3C/svg%3E");
+    -webkit-mask-mode: luminance;
+    mask-mode: luminance;
   }
   .entenderlo-video__cta {
     opacity: 1;
@@ -1815,43 +1961,108 @@ ul, ol {
   color: #000;
 }
 @media (max-width: 768px) {
-  .claves-cards {
-    height: auto;
-  }
+  /* Bloques 17–20 Figma — claves-cards. Se MANTIENE el comportamiento sticky/scroll progresivo
+     (no se convierte a layout vertical). Solo se ajustan tipografías y geometría del template card al spec móvil. */
   .claves-cards__sticky {
-    position: static;
-    height: auto;
-    overflow: visible;
-    padding: 4rem 1.5rem;
+    --stack-offset: 10px;
+    --stack-scale-step: 0.018;
   }
   .claves-cards__intro {
-    position: static;
-    padding: 0 0 4rem;
-    gap: 2rem;
+    padding: clamp(40px, calc(56 / 375 * 100vw), 56px) clamp(16px, calc(21 / 375 * 100vw), 21px) clamp(24px, calc(32 / 375 * 100vw), 32px);
+    gap: clamp(20px, calc(28 / 375 * 100vw), 28px);
   }
-  .claves-cards__intro-text {
-    opacity: 1 !important;
-    transform: none !important;
+  .claves-cards__icon {
+    width: clamp(48px, calc(59.156 / 375 * 100vw), 59.156px);
   }
+  /* Bloque 17 — "España, líder mundial…" 65.015px Switzer Regular / 0.9 / -4.1382px */
   .claves-cards__heading {
-    font-size: clamp(2rem, 9vw, 3rem);
+    font-family: "Switzer", system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: clamp(52px, calc(65.015 / 375 * 100vw), 65.015px);
+    line-height: 0.9;
+    letter-spacing: clamp(-4.1382px, calc(-4.1382 / 375 * 100vw), -3.52px);
+    color: #000;
+    max-width: clamp(300px, calc(350 / 375 * 100vw), 350px);
   }
-  .claves-cards__deck {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+  /* Bloque 18 — párrafo España 18px Switzer Medium / 1.3 / -0.5px */
+  .claves-cards__lead {
+    font-family: "Switzer", system-ui, -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: clamp(15px, calc(18 / 375 * 100vw), 18px);
+    line-height: 1.3;
+    letter-spacing: clamp(-0.5px, calc(-0.5 / 375 * 100vw), -0.42px);
+    color: #000;
+    max-width: clamp(260px, calc(313 / 375 * 100vw), 313px);
   }
+  /* Bloque 19/21 — "10 claves" 70px OffBit / 0.8 / -0.8322px */
+  .claves-cards__pixeltag {
+    margin-top: clamp(28px, calc(40 / 375 * 100vw), 40px);
+    font-family: "OffBit", "Pixelify Sans", "Switzer", monospace;
+    font-weight: 700;
+    font-size: clamp(56px, calc(70 / 375 * 100vw), 70px);
+    line-height: 0.8;
+    letter-spacing: clamp(-0.8322px, calc(-0.8322 / 375 * 100vw), -0.71px);
+    color: #000;
+    text-align: center;
+  }
+  /* Bloque 20 — Card template (AEMPS): tarjeta vertical, badge cuadrado, copy 18px */
   .claves-cards__card {
-    position: relative;
-    left: auto;
-    bottom: auto;
-    transform: none !important;
-    opacity: 1 !important;
+    width: clamp(280px, calc(338 / 375 * 100vw), 338px);
+    aspect-ratio: 338 / 508.5;
+    padding: clamp(20px, calc(28 / 375 * 100vw), 28px) clamp(16px, calc(24 / 375 * 100vw), 24px);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    column-gap: 0;
+    row-gap: clamp(16px, calc(24 / 375 * 100vw), 24px);
+    background-size: 100% 100%;
+  }
+  .claves-cards__badge {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    width: clamp(60px, calc(72 / 375 * 100vw), 72px);
+    height: clamp(60px, calc(72 / 375 * 100vw), 72px);
+    border: 0.655px solid #1d1b1a;
+    border-radius: clamp(11px, calc(13.091 / 375 * 100vw), 13.091px);
+  }
+  .claves-cards__num {
+    font-family: "OffBit", "Pixelify Sans", "Switzer", monospace;
+    font-weight: 700;
+    font-size: clamp(32px, calc(39.273 / 375 * 100vw), 39.273px);
+    line-height: 1;
+    letter-spacing: clamp(1.1px, calc(1.3091 / 375 * 100vw), 1.3091px);
+    color: #000;
+  }
+  .claves-cards__title {
+    grid-column: 1;
+    grid-row: 2;
     width: 100%;
-    max-width: 480px;
+    max-width: clamp(260px, calc(313 / 375 * 100vw), 313px);
     margin-inline: auto;
-    aspect-ratio: auto;
+    text-align: center;
+    font-family: "Switzer", system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: clamp(30px, calc(40 / 375 * 100vw), 40px);
+    line-height: 0.9;
+    letter-spacing: clamp(-3px, calc(-3 / 375 * 100vw), -2.55px);
+    color: #000;
+  }
+  .claves-cards__copy {
+    grid-column: 1;
+    grid-row: 3;
+    width: 100%;
+    max-width: clamp(240px, calc(288 / 375 * 100vw), 288px);
+    margin-inline: auto;
+    justify-self: center;
+    align-self: start;
+    text-align: center;
+    text-transform: none;
+    font-family: "Switzer", system-ui, -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: clamp(15px, calc(18 / 375 * 100vw), 18px);
+    line-height: 1.3;
+    letter-spacing: clamp(-0.5px, calc(-0.5 / 375 * 100vw), -0.42px);
+    color: #000;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1863,34 +2074,25 @@ ul, ol {
 .logos-cloud {
   position: relative;
   width: 100%;
-  background: transparent;
-  --logos-max-width: 800px;
-  --logos-pad-top: -20px;
-  --logos-pad-bottom: 50px;
+  background: #ffffff;
 }
 .logos-cloud__inner {
+  width: 100%;
   max-width: 1440px;
   margin-inline: auto;
-  margin-top: var(--logos-pad-top);
-  padding: 0 clamp(24px, 7.64vw, 140px) var(--logos-pad-bottom);
-  display: flex;
-  justify-content: center;
+  aspect-ratio: 1440 / 520;
+  overflow: hidden;
 }
 .logos-cloud__img {
   width: 100%;
-  max-width: var(--logos-max-width);
-  height: auto;
+  height: 100%;
   display: block;
-  mix-blend-mode: multiply;
-}
-.logos-cloud--invert .logos-cloud__img {
-  filter: invert(1);
-  mix-blend-mode: screen;
+  object-fit: cover;
+  object-position: center;
 }
 @media (max-width: 768px) {
   .logos-cloud__inner {
-    margin-top: var(--logos-pad-top);
-    padding: 0 1.5rem var(--logos-pad-bottom);
+    aspect-ratio: 375 / 180;
   }
 }
 
@@ -2030,16 +2232,46 @@ ul, ol {
   transform: translateY(-100%);
 }
 @media (max-width: 768px) {
-  .banners__inner {
-    padding: 3rem 1.5rem;
+  /* Bloque 22 Figma — Card blanca pre-footer: bg #fff, border-radius 42px, contenido apilado.
+     El gradiente azul-lila se mueve al wrapper .home-footer-stack (ya está) y la card queda blanca. */
+  .home-footer-stack > .banners--contacto {
+    padding-inline: clamp(12px, calc(16 / 375 * 100vw), 16px);
+    padding-block: clamp(24px, calc(40 / 375 * 100vw), 40px);
   }
-  .banners__content {
+  .banners--contacto .banners__inner {
+    padding: clamp(28px, calc(40 / 375 * 100vw), 40px) clamp(20px, calc(28 / 375 * 100vw), 28px);
+    border-radius: clamp(32px, calc(42 / 375 * 100vw), 42px);
+    background: #fff;
+    min-height: clamp(420px, calc(599 / 375 * 100vw), 599px);
+  }
+  .banners--contacto .banners__marquee-text {
+    color: #1a1a1a;
+    opacity: 0.08;
+    font-size: clamp(48px, calc(72 / 375 * 100vw), 96px);
+    letter-spacing: -3px;
+  }
+  .banners--contacto .banners__content {
     flex-direction: column;
     align-items: flex-start;
-    gap: 2rem;
+    gap: clamp(20px, calc(28 / 375 * 100vw), 28px);
   }
-  .banners__lead {
+  .banners--contacto .banners__lead {
     width: 100%;
+    color: #000;
+    font-family: "Switzer", system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: clamp(18px, calc(22 / 375 * 100vw), 24px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .banners--contacto .banners__cta {
+    border-color: #1a1a1a;
+    background: rgba(19, 5, 68, 0.06);
+    color: #1a1a1a;
+  }
+  .banners--contacto .banners__cta:hover,
+  .banners--contacto .banners__cta:focus-visible {
+    background: rgba(19, 5, 68, 0.12);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2054,5 +2286,79 @@ ul, ol {
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+/* =========================================================================
+   RESPONSIVE MÓVIL CONSOLIDADO — spec Figma móvil (viewport base 375px)
+   Solo elementos que aún no estaban cubiertos en sus bloques específicos:
+   bandas de fondo (bolas/pildoras), marquesina y reset de offsets desktop.
+   Los bloques tipográficos por sección ya quedaron en sus @media específicos
+   (hero-ensayos, intro-compromiso, innovacion-stack, entenderlo, claves-cards,
+   logos-cloud y banners--contacto).
+   ========================================================================= */
+@media (max-width: 768px) {
+  /* Bloque 5 Figma — Marquesina "es seguir avanzando · es ir a más" 64.83px Switzer Regular / 1.0 / -2px */
+  .cinta-ensayos {
+    height: clamp(96px, calc(125.885 / 375 * 100vw), 125.885px);
+    max-height: none;
+    min-height: 0;
+  }
+  .cinta-ensayos__item {
+    gap: clamp(8px, calc(12 / 375 * 100vw), 12px);
+    padding-right: clamp(8px, calc(12 / 375 * 100vw), 12px);
+  }
+  .cinta-ensayos__logo {
+    width: clamp(160px, calc(260.414 / 375 * 100vw), 260.414px);
+    height: clamp(32px, calc(50.246 / 375 * 100vw), 50.246px);
+    max-width: none;
+    max-height: none;
+    transform: none;
+  }
+  .cinta-ensayos__text {
+    font-family: "Switzer", system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: clamp(52px, calc(64.83 / 375 * 100vw), 64.83px);
+    line-height: 1;
+    letter-spacing: clamp(-2px, calc(-2 / 375 * 100vw), -1.7px);
+    color: #000;
+  }
+
+  /* Bloques 1, 8, 14, 15 Figma — Bandas "Bolas"/"Bolas2": en móvil se reduce el tamaño
+     de las bolas/blobs para que la composición tenga peso visual coherente con 375px. */
+  .fondo-bolas__bola {
+    width: clamp(72px, calc(112.917 / 375 * 100vw), 112.917px);
+    height: clamp(72px, calc(112.917 / 375 * 100vw), 112.917px);
+  }
+  .fondo-bolas--verde .fondo-bolas__bola {
+    width: clamp(64px, calc(100.524 / 375 * 100vw), 100.524px);
+    height: clamp(64px, calc(100.524 / 375 * 100vw), 100.524px);
+  }
+  .fondo-bolas__blob {
+    opacity: 0.4;
+  }
+
+  /* Bloque 6 Figma — Banda "Cels" rosa: cápsulas más finas y cortas en móvil */
+  .fondo-pildoras__pildora {
+    width: clamp(18px, calc(26.418 / 375 * 100vw), 26.418px);
+    height: clamp(80px, calc(126.39 / 375 * 100vw), 126.39px);
+  }
+
+  /* Reset de offsets negativos desktop que descuadran el stack en móvil */
+  .home-entenderlo-stack {
+    margin-top: 0;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .home-entenderlo-stack > .entenderlo {
+    padding-top: clamp(48px, calc(80 / 375 * 100vw), 80px);
+  }
+  .home-entenderlo-stack > .entenderlo-video {
+    margin-top: 0;
+  }
+
+  /* Bloque 22 Figma — la card pre-footer va sobre fondo gradiente azul-lila del wrapper */
+  .home-footer-stack {
+    padding-block: clamp(16px, calc(24 / 375 * 100vw), 24px) 0;
   }
 }

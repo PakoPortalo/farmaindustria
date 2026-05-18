@@ -33,6 +33,7 @@
       sticky.style.setProperty('--p', p);
       sticky.style.setProperty('--i', i);
       sticky.style.setProperty('--sub', sub);
+      sticky.classList.toggle('is-state-odd', i % 2 === 1);
 
       section.querySelectorAll('[data-i]').forEach(el => {
         const di = parseInt(el.dataset.i, 10);
