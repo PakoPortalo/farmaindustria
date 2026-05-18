@@ -837,18 +837,16 @@ ul, ol {
   inset: 0;
   display: block;
   overflow: hidden;
-  -webkit-mask-image: url("../assets/img/hero-secundario/recorte-mask.webp"), url("../assets/img/hero-secundario/plus.svg");
-  mask-image: url("../assets/img/hero-secundario/recorte-mask.webp"), url("../assets/img/hero-secundario/plus.svg");
-  -webkit-mask-size: 100% 100%, 100% 100%;
-  mask-size: 100% 100%, 100% 100%;
-  -webkit-mask-position: 0 0, 0 0;
-  mask-position: 0 0, 0 0;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1285 536' preserveAspectRatio='none'%3E%3Cpath fill='white' fill-rule='evenodd' clip-rule='evenodd' d='M1265 0C1276.05 0 1285 8.95431 1285 20V382.249C1285 393.295 1276.05 402.249 1265 402.249H1241.15C1230.1 402.249 1221.15 411.204 1221.15 422.249V450.123C1221.15 461.169 1212.19 470.123 1201.15 470.123H674.472C663.426 470.123 654.472 479.077 654.472 490.123V516C654.472 527.046 645.517 536 634.472 536H73.874C62.8284 536 53.874 527.046 53.874 516V497.11C53.874 486.065 44.9197 477.11 33.874 477.11H20C8.95445 477.11 0.000230827 468.156 0 457.11V157.743C0 146.697 8.95431 137.743 20 137.743H41.8555C52.9011 137.743 61.8554 128.789 61.8555 117.743V89.3701C61.8557 78.3247 70.81 69.3702 81.8555 69.3701H699.078C710.124 69.3701 719.078 60.4158 719.078 49.3701V20C719.078 8.95431 728.032 0 739.078 0H1265ZM93 413.162V433.838H134.162V475H154.838V439.008C154.838 437.476 154.328 436.264 153.307 435.37C152.413 434.349 151.201 433.838 149.669 433.838H144.5V428.669C144.5 427.137 143.99 425.925 142.969 425.031C142.075 424.01 140.863 423.5 139.331 423.5H134.162V418.331C134.162 416.799 133.651 415.587 132.63 414.693C131.736 413.672 130.524 413.162 128.992 413.162H93ZM134.162 372V407.992C134.162 409.524 134.609 410.8 135.502 411.821C136.523 412.715 137.799 413.162 139.331 413.162H144.5V418.331C144.5 419.863 144.946 421.139 145.84 422.16C146.861 423.054 148.137 423.5 149.669 423.5H154.838V428.669C154.838 430.201 155.285 431.477 156.179 432.498C157.2 433.391 158.476 433.838 160.008 433.838H196V413.162H154.838V372H134.162Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1285 536' preserveAspectRatio='none'%3E%3Cpath fill='white' fill-rule='evenodd' clip-rule='evenodd' d='M1265 0C1276.05 0 1285 8.95431 1285 20V382.249C1285 393.295 1276.05 402.249 1265 402.249H1241.15C1230.1 402.249 1221.15 411.204 1221.15 422.249V450.123C1221.15 461.169 1212.19 470.123 1201.15 470.123H674.472C663.426 470.123 654.472 479.077 654.472 490.123V516C654.472 527.046 645.517 536 634.472 536H73.874C62.8284 536 53.874 527.046 53.874 516V497.11C53.874 486.065 44.9197 477.11 33.874 477.11H20C8.95445 477.11 0.000230827 468.156 0 457.11V157.743C0 146.697 8.95431 137.743 20 137.743H41.8555C52.9011 137.743 61.8554 128.789 61.8555 117.743V89.3701C61.8557 78.3247 70.81 69.3702 81.8555 69.3701H699.078C710.124 69.3701 719.078 60.4158 719.078 49.3701V20C719.078 8.95431 728.032 0 739.078 0H1265ZM93 413.162V433.838H134.162V475H154.838V439.008C154.838 437.476 154.328 436.264 153.307 435.37C152.413 434.349 151.201 433.838 149.669 433.838H144.5V428.669C144.5 427.137 143.99 425.925 142.969 425.031C142.075 424.01 140.863 423.5 139.331 423.5H134.162V418.331C134.162 416.799 133.651 415.587 132.63 414.693C131.736 413.672 130.524 413.162 128.992 413.162H93ZM134.162 372V407.992C134.162 409.524 134.609 410.8 135.502 411.821C136.523 412.715 137.799 413.162 139.331 413.162H144.5V418.331C144.5 419.863 144.946 421.139 145.84 422.16C146.861 423.054 148.137 423.5 149.669 423.5H154.838V428.669C154.838 430.201 155.285 431.477 156.179 432.498C157.2 433.391 158.476 433.838 160.008 433.838H196V413.162H154.838V372H134.162Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-mode: luminance, alpha;
-  mask-mode: luminance, alpha;
-  -webkit-mask-composite: source-out;
-  mask-composite: subtract;
+  -webkit-mask-mode: luminance;
+  mask-mode: luminance;
 }
 .hero-secundario__img {
   width: 100%;
@@ -910,7 +908,7 @@ ul, ol {
     transform: translate(-50%, -50%);
     opacity: 1;
     text-align: center;
-    font-size: clamp(14px, calc(16 / 375 * 100vw), 18px);
+    font-size: clamp(11px, calc(13 / 375 * 100vw), 14px);
   }
 }
 
@@ -1005,13 +1003,19 @@ ul, ol {
     padding-block: 2rem;
   }
   .intro-compromiso__heading {
-    margin-left: 0;
-    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: clamp(280px, calc(333 / 375 * 100vw), 333px);
+    text-align: center;
     font-size: clamp(1.75rem, 6vw, 2.5rem);
     letter-spacing: -0.04em;
     margin-bottom: 1rem;
   }
   .intro-compromiso__paragraph {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: clamp(280px, calc(335 / 375 * 100vw), 335px);
+    text-align: center;
     font-size: clamp(1rem, 3vw, 1.2rem);
     letter-spacing: -0.01em;
   }
@@ -2313,7 +2317,7 @@ ul, ol {
     height: clamp(32px, calc(50.246 / 375 * 100vw), 50.246px);
     max-width: none;
     max-height: none;
-    transform: none;
+    transform: translateY(clamp(12px, calc(18 / 375 * 100vw), 11px));
   }
   .cinta-ensayos__text {
     font-family: "Switzer", system-ui, -apple-system, sans-serif;
