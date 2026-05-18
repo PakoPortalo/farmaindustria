@@ -97,8 +97,9 @@
     update();
   }
 
-  // ----- 2) Slider testimonios (móvil): JS transform por índice -----
+  // ----- 2) Slider testimonios (móvil): layout pintado por JS en pixels -----
   const sliders = new Map();
+  const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
   document.querySelectorAll('.entenderlo__slider').forEach(slider => {
     const track = slider.querySelector('.entenderlo__photos');
     const prev = slider.querySelector('.entenderlo__nav--prev');
@@ -108,9 +109,24 @@
     let idx = 0;
 
     const apply = () => {
-      const step = photos.length > 1
-        ? photos[1].offsetLeft - photos[0].offsetLeft
-        : photos[0].getBoundingClientRect().width;
+      if (!isMobile()) {
+        photos.forEach(p => { p.style.width = ''; });
+        track.style.paddingLeft = '';
+        track.style.paddingRight = '';
+        track.style.gap = '';
+        track.style.transform = '';
+        return;
+      }
+      const styles = getComputedStyle(track);
+      const padL = parseFloat(styles.getPropertyValue('--ent-pad-left')) || 10;
+      const padR = parseFloat(styles.getPropertyValue('--ent-pad-right')) || 10;
+      const sliderW = slider.clientWidth;
+      const cardW = Math.max(0, sliderW - padL - padR);
+      photos.forEach(p => { p.style.width = cardW + 'px'; });
+      track.style.paddingLeft = padL + 'px';
+      track.style.paddingRight = '0px';
+      track.style.gap = padR + 'px';
+      const step = cardW + padR;
       track.style.transform = `translateX(-${idx * step}px)`;
       if (prev) prev.hidden = idx === 0;
       if (next) next.hidden = idx === photos.length - 1;
@@ -120,6 +136,7 @@
     if (prev) prev.addEventListener('click', () => { if (idx > 0)               { idx--; apply(); } });
     if (next) next.addEventListener('click', () => { if (idx < photos.length-1) { idx++; apply(); } });
     window.addEventListener('resize', apply);
+    window.addEventListener('orientationchange', apply);
     apply();
     sliders.set(slider, { reset });
   });
