@@ -1647,25 +1647,22 @@ ul, ol {
     overflow: hidden;
   }
   .entenderlo__photos {
-    /* ===== PERILLAS DEL SLIDER (toca solo estas) ===== */
-    /* Ancho de la card. Bájalo para hacerla más pequeña. */
-    --ent-card-w: clamp(220px, calc(240 / 375 * 100vw), 280px);
-    /* Distancia de la card al borde izquierdo del slider. */
-    /* Para centrar: usa calc((100% - var(--ent-card-w)) / 2). */
-    /* Para "moverla a la izquierda": usa un valor pequeño (12px–24px). */
-    --ent-offset-l: 0px;
-    /* ================================================ */
+    /* ===== PERILLA ÚNICA DEL SLIDER =====
+       Aire lateral a cada lado de la card.
+       Súbelo → card más estrecha + más centrada.
+       Bájalo → card más ancha + más cerca de los bordes. */
+    --ent-pad: clamp(28px, calc(40 / 375 * 100vw), 64px);
+    /* ===================================== */
     position: static;
     height: auto;
     bottom: auto;
     margin: 0;
-    padding-left: var(--ent-offset-l);
-    padding-right: 0;
+    padding-inline: var(--ent-pad);
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: calc(100% - var(--ent-offset-l) - var(--ent-card-w));
+    gap: var(--ent-pad);
     overflow: visible;
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
@@ -1674,7 +1671,7 @@ ul, ol {
   .entenderlo__photo--left,
   .entenderlo__photo--center,
   .entenderlo__photo--right {
-    flex: 0 0 var(--ent-card-w);
+    flex: 0 0 calc(100% - 2 * var(--ent-pad));
     width: auto;
     max-width: none;
     height: auto;
