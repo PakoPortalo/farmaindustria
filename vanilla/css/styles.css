@@ -1600,7 +1600,10 @@ ul, ol {
   /* Bloques 9 y 10 Figma — Quote "La mejor manera de entenderlo…" 65.015px/0.9/-4.1382px (línea 1 Regular, línea 2 Light) */
   .entenderlo__inner {
     padding-inline: clamp(12px, calc(16 / 375 * 100vw), 16px);
-    padding-block: clamp(64px, calc(96 / 375 * 100vw), 96px);
+    padding-block: clamp(64px, calc(96 / 375 * 100vw), 96px) 16px;
+  }
+  .entenderlo.is-open .entenderlo__cta {
+    display: none;
   }
   .entenderlo__smiley {
     width: clamp(56px, calc(71 / 375 * 100vw), 71px);
@@ -1637,11 +1640,88 @@ ul, ol {
   .entenderlo__cta-ring svg {
     font-size: 9px;
   }
+  .entenderlo__slider {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+  }
   .entenderlo__photos {
+    /* ===== PERILLAS DEL SLIDER (toca solo estas) ===== */
+    /* Ancho de la card. Bájalo para hacerla más pequeña. */
+    --ent-card-w: clamp(220px, calc(240 / 375 * 100vw), 280px);
+    /* Distancia de la card al borde izquierdo del slider. */
+    /* Para centrar: usa calc((100% - var(--ent-card-w)) / 2). */
+    /* Para "moverla a la izquierda": usa un valor pequeño (12px–24px). */
+    --ent-offset-l: 0px;
+    /* ================================================ */
     position: static;
     height: auto;
     bottom: auto;
-    margin-top: 2rem;
+    margin: 0;
+    padding-left: var(--ent-offset-l);
+    padding-right: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: calc(100% - var(--ent-offset-l) - var(--ent-card-w));
+    overflow: visible;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+  .entenderlo__photo,
+  .entenderlo__photo--left,
+  .entenderlo__photo--center,
+  .entenderlo__photo--right {
+    flex: 0 0 var(--ent-card-w);
+    width: auto;
+    max-width: none;
+    height: auto;
+    display: block;
+    --tilt: 0deg;
+    --shift-y: 0px;
+    --shift-x: 0px;
+    --flip-x: 1;
+    margin: 0;
+    opacity: 1;
+    transform: none;
+  }
+  .entenderlo__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+    z-index: 3;
+    transition: opacity 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .entenderlo__nav svg {
+    width: 24px;
+    height: 24px;
+  }
+  .entenderlo__nav--prev { left: 8px; }
+  .entenderlo__nav--next { right: 8px; }
+  .entenderlo.is-open .entenderlo__nav {
+    display: inline-flex;
+  }
+  .entenderlo__nav[hidden] {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+@media (min-width: 769px) {
+  .entenderlo__nav {
     display: none;
   }
 }
@@ -1978,15 +2058,15 @@ ul, ol {
   .claves-cards__icon {
     width: clamp(48px, calc(59.156 / 375 * 100vw), 59.156px);
   }
-  /* Bloque 17 — "España, líder mundial…" 65.015px Switzer Regular / 0.9 / -4.1382px */
+  /* Bloque 17 — "España, líder mundial…" reducido a 40px para que entre 2 líneas */
   .claves-cards__heading {
     font-family: "Switzer", system-ui, -apple-system, sans-serif;
     font-weight: 400;
-    font-size: clamp(52px, calc(65.015 / 375 * 100vw), 65.015px);
-    line-height: 0.9;
-    letter-spacing: clamp(-4.1382px, calc(-4.1382 / 375 * 100vw), -3.52px);
+    font-size: clamp(32px, calc(40 / 375 * 100vw), 44px);
+    line-height: 0.95;
+    letter-spacing: clamp(-2.5px, calc(-2.5 / 375 * 100vw), -2px);
     color: #000;
-    max-width: clamp(300px, calc(350 / 375 * 100vw), 350px);
+    max-width: clamp(300px, calc(330 / 375 * 100vw), 330px);
   }
   /* Bloque 18 — párrafo España 18px Switzer Medium / 1.3 / -0.5px */
   .claves-cards__lead {
@@ -2009,7 +2089,7 @@ ul, ol {
     color: #000;
     text-align: center;
   }
-  /* Bloque 20 — Card template (AEMPS): tarjeta vertical, badge cuadrado, copy 18px */
+  /* Bloque 20 — Card template: rectángulo redondeado 1px negro, sin shape PNG */
   .claves-cards__card {
     width: clamp(280px, calc(338 / 375 * 100vw), 338px);
     aspect-ratio: 338 / 508.5;
@@ -2018,7 +2098,9 @@ ul, ol {
     grid-template-rows: auto auto 1fr;
     column-gap: 0;
     row-gap: clamp(16px, calc(24 / 375 * 100vw), 24px);
-    background-size: 100% 100%;
+    background: transparent;
+    border: 1px solid #000;
+    border-radius: clamp(22px, calc(28.5 / 375 * 100vw), 28.5px);
   }
   .claves-cards__badge {
     grid-column: 1;
@@ -2026,7 +2108,7 @@ ul, ol {
     justify-self: center;
     width: clamp(60px, calc(72 / 375 * 100vw), 72px);
     height: clamp(60px, calc(72 / 375 * 100vw), 72px);
-    border: 0.655px solid #1d1b1a;
+    border: 1px solid #000;
     border-radius: clamp(11px, calc(13.091 / 375 * 100vw), 13.091px);
   }
   .claves-cards__num {

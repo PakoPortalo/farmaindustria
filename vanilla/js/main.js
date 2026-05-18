@@ -97,13 +97,45 @@
     update();
   }
 
-  // ----- 2) Toggle CTA cascos -----
+  // ----- 2) Slider testimonios (móvil): JS transform por índice -----
+  const sliders = new Map();
+  document.querySelectorAll('.entenderlo__slider').forEach(slider => {
+    const track = slider.querySelector('.entenderlo__photos');
+    const prev = slider.querySelector('.entenderlo__nav--prev');
+    const next = slider.querySelector('.entenderlo__nav--next');
+    if (!track) return;
+    const photos = track.querySelectorAll('.entenderlo__photo');
+    let idx = 0;
+
+    const apply = () => {
+      const step = photos.length > 1
+        ? photos[1].offsetLeft - photos[0].offsetLeft
+        : photos[0].getBoundingClientRect().width;
+      track.style.transform = `translateX(-${idx * step}px)`;
+      if (prev) prev.hidden = idx === 0;
+      if (next) next.hidden = idx === photos.length - 1;
+    };
+    const reset = () => { idx = 0; apply(); };
+
+    if (prev) prev.addEventListener('click', () => { if (idx > 0)               { idx--; apply(); } });
+    if (next) next.addEventListener('click', () => { if (idx < photos.length-1) { idx++; apply(); } });
+    window.addEventListener('resize', apply);
+    apply();
+    sliders.set(slider, { reset });
+  });
+
+  // ----- 3) Toggle CTA cascos + reset slider al abrir -----
   document.querySelectorAll('.entenderlo__cta').forEach(btn => {
     btn.addEventListener('click', () => {
       const section = btn.closest('.entenderlo');
       if (!section) return;
       const open = section.classList.toggle('is-open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) {
+        const slider = section.querySelector('.entenderlo__slider');
+        const api = sliders.get(slider);
+        if (api) requestAnimationFrame(() => api.reset());
+      }
     });
   });
 })();
