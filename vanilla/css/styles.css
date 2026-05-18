@@ -1647,22 +1647,27 @@ ul, ol {
     overflow: hidden;
   }
   .entenderlo__photos {
-    /* ===== PERILLA ÚNICA DEL SLIDER =====
-       Aire lateral a cada lado de la card.
-       Súbelo → card más estrecha + más centrada.
-       Bájalo → card más ancha + más cerca de los bordes. */
-    --ent-pad: clamp(28px, calc(40 / 375 * 100vw), 64px);
-    /* ===================================== */
+    /* ===== PERILLAS DEL SLIDER (en pixels crudos) =====
+       Cambia los números directamente. Refresca con ?v=N.
+       PAD-LEFT  → aire entre borde izquierdo y card.
+       PAD-RIGHT → aire entre card y borde derecho.
+       PAD-LEFT = PAD-RIGHT → card centrada.
+       PAD-LEFT < PAD-RIGHT → card a la izquierda.
+       Card width = ancho slider − pad-left − pad-right (auto). */
+    --ent-pad-left:  40px;
+    --ent-pad-right: 40px;
+    /* =================================================== */
     position: static;
     height: auto;
     bottom: auto;
     margin: 0;
-    padding-inline: var(--ent-pad);
+    padding-left: var(--ent-pad-left);
+    padding-right: 0;
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: var(--ent-pad);
+    gap: var(--ent-pad-right);
     overflow: visible;
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
@@ -1671,7 +1676,7 @@ ul, ol {
   .entenderlo__photo--left,
   .entenderlo__photo--center,
   .entenderlo__photo--right {
-    flex: 0 0 calc(100% - 2 * var(--ent-pad));
+    flex: 0 0 calc(100% - var(--ent-pad-left) - var(--ent-pad-right));
     width: auto;
     max-width: none;
     height: auto;
