@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Farmaindustria — +Ensayos</title>
     <link rel="profile" href="https://gmpg.org/xfn/11">
-    <link rel="stylesheet" href="./css/styles.css?v=101">
-    <script defer src="./js/main.js?v=101"></script>
+    <link rel="stylesheet" href="./css/styles.css?v=106">
+    <script defer src="./js/main.js?v=106"></script>
 </head>
 <body class="home page-template page-template-front-page">
 
@@ -128,7 +128,7 @@
         </section>
 
         <section class="hero-secundario alignfull">
-            <a class="hero-secundario__trigger" href="#" aria-label="Ver vídeo">
+            <a class="hero-secundario__trigger" href="#" aria-label="Ver vídeo" data-video-modal-open data-video-src="./assets/video/spot-90.mp4">
                 <span class="hero-secundario__recorte">
                     <img class="hero-secundario__img" src="./assets/img/hero-secundario/balcon.webp" alt="" width="1285" height="536" loading="lazy" decoding="async" />
                 </span>
@@ -389,10 +389,31 @@
                     <button type="button" class="entenderlo__nav entenderlo__nav--prev" aria-label="Testimonio anterior">
                         <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
-                    <div class="entenderlo__photos" aria-hidden="true">
-                        <img class="entenderlo__photo entenderlo__photo--left"   src="./assets/img/entenderlo/rectangle-shape.svg" alt="" width="462" height="520" />
-                        <img class="entenderlo__photo entenderlo__photo--center" src="./assets/img/entenderlo/rectangle-shape.svg" alt="" width="462" height="520" />
-                        <img class="entenderlo__photo entenderlo__photo--right"  src="./assets/img/entenderlo/rectangle-shape.svg" alt="" width="462" height="520" />
+                    <div class="entenderlo__photos">
+                        <button type="button" class="entenderlo__photo entenderlo__photo--left"
+                                data-video-modal-open data-video-src="./assets/video/capsula-ana.mp4"
+                                aria-label="Ver testimonio de Ana">
+                            <img class="entenderlo__photo-img" src="./assets/img/entenderlo/foto-ana.webp" alt="" width="462" height="520" loading="lazy" />
+                            <span class="entenderlo__photo-play" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="24" height="24"><polygon points="8,5 19,12 8,19" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            </span>
+                        </button>
+                        <button type="button" class="entenderlo__photo entenderlo__photo--center"
+                                data-video-modal-open data-video-src="./assets/video/capsula-esther.mp4"
+                                aria-label="Ver testimonio de Esther">
+                            <img class="entenderlo__photo-img" src="./assets/img/entenderlo/foto-esther.webp" alt="" width="462" height="520" loading="lazy" />
+                            <span class="entenderlo__photo-play" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="24" height="24"><polygon points="8,5 19,12 8,19" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            </span>
+                        </button>
+                        <button type="button" class="entenderlo__photo entenderlo__photo--right"
+                                data-video-modal-open data-video-src="./assets/video/capsula-esther.mp4"
+                                aria-label="Ver testimonio de Esther">
+                            <img class="entenderlo__photo-img" src="./assets/img/entenderlo/foto-esther.webp" alt="" width="462" height="520" loading="lazy" />
+                            <span class="entenderlo__photo-play" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="24" height="24"><polygon points="8,5 19,12 8,19" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            </span>
+                        </button>
                     </div>
                     <button type="button" class="entenderlo__nav entenderlo__nav--next" aria-label="Testimonio siguiente">
                         <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -407,7 +428,7 @@
                     ¿Qué son los<br />ensayos clínicos?
                 </h2>
 
-                <button type="button" class="entenderlo-video__card" aria-label="Ver vídeo">
+                <button type="button" class="entenderlo-video__card" aria-label="Ver vídeo" data-video-modal-open data-video-youtube="CYmeXPqI0Nc">
                     <span class="entenderlo-video__media">
                         <img class="entenderlo-video__poster" src="./assets/img/entenderlo/que-son-video.webp" alt="" width="1285" height="536" loading="lazy" />
                     </span>
@@ -561,6 +582,15 @@
         </section>
     </div>
 </main>
+
+<div class="video-modal" data-video-modal>
+    <button type="button" class="video-modal__close" data-video-modal-close aria-label="Cerrar vídeo">
+        <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+    </button>
+    <div class="video-modal__content" data-video-modal-content></div>
+</div>
 
 </body>
 </html>

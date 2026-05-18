@@ -157,6 +157,66 @@
   });
 })();
 
+/* ===== 2b) Video modal (popup vídeo: local mp4 + YouTube embed) ===== */
+(function () {
+  const modal = document.querySelector('[data-video-modal]');
+  if (!modal) return;
+  const content = modal.querySelector('[data-video-modal-content]');
+  const closeBtn = modal.querySelector('[data-video-modal-close]');
+  const triggers = document.querySelectorAll('[data-video-modal-open]');
+
+  const buildLocal = src => {
+    const v = document.createElement('video');
+    v.className = 'video-modal__video';
+    v.controls = true;
+    v.playsInline = true;
+    v.preload = 'metadata';
+    const s = document.createElement('source');
+    s.src = src;
+    s.type = 'video/mp4';
+    v.appendChild(s);
+    return v;
+  };
+  const buildYouTube = id => {
+    const f = document.createElement('iframe');
+    f.className = 'video-modal__video';
+    f.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+    f.title = 'Vídeo YouTube';
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    f.allowFullscreen = true;
+    return f;
+  };
+
+  const open = e => {
+    if (e) e.preventDefault();
+    const trigger = e ? e.currentTarget : null;
+    const ytId = trigger && trigger.dataset.videoYoutube;
+    const localSrc = trigger && trigger.dataset.videoSrc;
+    content.innerHTML = '';
+    const el = ytId ? buildYouTube(ytId) : buildLocal(localSrc || './assets/video/spot-90.mp4');
+    content.appendChild(el);
+    requestAnimationFrame(() => modal.classList.add('is-open'));
+    document.body.classList.add('is-modal-open');
+    if (!ytId && el.play) {
+      const p = el.play();
+      if (p && p.catch) p.catch(() => {});
+    }
+  };
+  const close = () => {
+    modal.classList.remove('is-open');
+    document.body.classList.remove('is-modal-open');
+    setTimeout(() => { content.innerHTML = ''; }, 400);
+  };
+
+  triggers.forEach(t => t.addEventListener('click', open));
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+  });
+})();
+
 /* ===== 3) claves-cards: scroll-driven stack ===== */
 (function () {
   const sections = document.querySelectorAll('.claves-cards');

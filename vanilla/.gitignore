@@ -1,0 +1,9 @@
+# Vídeo originales sin comprimir (master) — no van al repo
+assets/*.mov
+
+# Fotos PNG originales — versiones webp son las que se sirven
+assets/foto-ana.png
+assets/foto-esther.png
+
+# macOS metadata
+.DS_Store
