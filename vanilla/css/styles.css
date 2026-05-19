@@ -1160,19 +1160,21 @@ ul, ol {
 }
 /* Fix (Ysrael): photos pinned to the corners beside the scrolling title so
    they stay FULLY visible on desktop (the old -42vh/-28vh offsets pushed
-   them off-screen on tall/large monitors). Sized by viewport height so they
-   always fit. Even photos -> top-left, odd photos -> bottom-right. */
+   them off-screen on tall/large monitors). Sized by the SMALLER of a
+   height-based and a width-based value (min(vh, vw)) so they scale down on
+   small/narrow screens AND don't get lost on big monitors. Even photos ->
+   top-left, odd photos -> bottom-right. */
 .innovacion-stack__photo[data-i="0"], .innovacion-stack__photo[data-i="2"], .innovacion-stack__photo[data-i="4"] {
   top: clamp(24px, 5vh, 72px);
   left: 4vw;
   width: auto;
-  height: clamp(340px, 64vh, 860px);
+  height: clamp(220px, min(60vh, 46vw), 820px);
 }
 .innovacion-stack__photo[data-i="1"], .innovacion-stack__photo[data-i="3"], .innovacion-stack__photo[data-i="5"] {
   bottom: clamp(24px, 5vh, 72px);
   right: 4vw;
   width: auto;
-  height: clamp(300px, 58vh, 760px);
+  height: clamp(200px, min(54vh, 41vw), 720px);
 }
 /* Desktop: deja que la imagen sobresalga del shape (overflow visible) — el shape mantiene
    su mask en la zona visible pero la imagen ya no queda recortada al bounding box. */
