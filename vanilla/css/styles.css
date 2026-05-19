@@ -2381,37 +2381,27 @@ ul, ol {
 .logos-cloud__logo--ministerio {
   height: clamp(64px, 7vw, 116px);
 }
-/* Asociaciones: 5 columnas (desktop) con separador "+" propio
-   (tras cada item salvo fin de fila y el ultimo). Anula el separador base
-   que usa 6n y no encaja en 5 columnas. */
+/* Asociaciones: SIEMPRE 3 columnas, un unico separador "+" consistente.
+   Nunca tras el 3er item de la fila (3n) ni el ultimo -> sin "+" colgando.
+   !important para ganar al separador base de 80px de forma robusta y que
+   TODOS los "+" de asociaciones tengan el mismo tamano. */
 .logos-cloud__grid--asociacion {
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr) !important;
   row-gap: clamp(36px, 4.5vw, 64px);
 }
 .logos-cloud__grid--asociacion .logos-cloud__item::after {
-  display: none;
+  display: none !important;
 }
-.logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(5n)):not(:last-child)::after {
+.logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(3n)):not(:last-child)::after {
   content: "";
-  display: block;
+  display: block !important;
   position: absolute;
   top: 50%;
   right: 0;
-  width: clamp(28px, 3.6vw, 56px);
-  height: clamp(28px, 3.6vw, 56px);
+  width: clamp(22px, 3vw, 44px);
+  height: clamp(22px, 3vw, 44px);
   transform: translate(calc(50% + var(--logos-col-gap) / 2), -50%);
   background: url("../assets/img/logos-cloud/cruz.png") center / contain no-repeat;
-}
-@media (max-width: 1024px) {
-  .logos-cloud__grid--asociacion {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(3n)):not(:last-child)::after {
-    display: block;
-  }
-  .logos-cloud__grid--asociacion .logos-cloud__item:nth-child(3n)::after {
-    display: none;
-  }
 }
 /* Ministerio: SIN separador "+" (eran banners; el "+" base de 80px hacia que
    unas cruces se vieran mas grandes que las de asociaciones). */
@@ -2435,18 +2425,6 @@ ul, ol {
   .logos-cloud__logo--ministerio {
     height: auto;
     width: min(88%, 460px);
-  }
-}
-@media (max-width: 560px) {
-  /* Asociaciones: 2 columnas, "+" solo entre ambas (nunca al final de fila) */
-  .logos-cloud__grid--asociacion {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(2n)):not(:last-child)::after {
-    display: block;
-  }
-  .logos-cloud__grid--asociacion .logos-cloud__item:nth-child(2n)::after {
-    display: none;
   }
 }
 
