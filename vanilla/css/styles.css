@@ -1558,14 +1558,16 @@ ul, ol {
   justify-content: center;
   align-items: flex-start;
   gap: clamp(8px, 3.3vw, 48px);
-  margin-top: -260px;
+  /* Fix (Ysrael): reduced the upward pull so the rotated photos no
+     longer overlap the heading "escuchar a quienes lo han vivido". */
+  margin-top: -150px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
 @media (max-width: 1440px) {
   .entenderlo__photos {
-    margin-top: calc(-180px - 5.56vw);
+    margin-top: calc(-80px - 5.56vw);
   }
 }
 .entenderlo__photo {
