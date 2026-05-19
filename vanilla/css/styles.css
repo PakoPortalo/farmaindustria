@@ -2267,7 +2267,8 @@ ul, ol {
 .logos-cloud__brand {
   display: block;
   width: auto;
-  height: 64px;
+  /* Ysrael: restored approved header size (was lost when PR #1 merged from an earlier commit). */
+  height: 100px;
   margin: 0 auto 72px;
 }
 .logos-cloud__grid {
@@ -2292,6 +2293,20 @@ ul, ol {
   width: auto;
   height: 72px;
   object-fit: contain;
+}
+/* Logo links (Ysrael): wrappers must keep the grid/centering layout intact. */
+.logos-cloud__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.logos-cloud__brand-link {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 72px;
+}
+.logos-cloud__brand-link .logos-cloud__brand {
+  margin: 0;
 }
 /* "+" separator between columns (not after the last in a row, not the last item) */
 .logos-cloud__item:not(:nth-child(6n)):not(:last-child)::after {
