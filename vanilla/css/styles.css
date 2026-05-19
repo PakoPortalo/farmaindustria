@@ -2405,11 +2405,28 @@ ul, ol {
 }
 /* Ministerio: SIN separador "+" (eran banners; el "+" base de 80px hacia que
    unas cruces se vieran mas grandes que las de asociaciones). */
+/* Ministerio: "+" entre los 3 (desktop), mismo tamano que asociaciones.
+   Anula el separador base de 80px. En movil se ocultan (apilados). */
 .logos-cloud__grid--ministerio .logos-cloud__item::after {
   display: none !important;
 }
+.logos-cloud__grid--ministerio .logos-cloud__item:not(:nth-child(3n)):not(:last-child)::after {
+  content: "";
+  display: block !important;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: clamp(22px, 3vw, 44px);
+  height: clamp(22px, 3vw, 44px);
+  transform: translate(calc(50% + var(--logos-col-gap) / 2), -50%);
+  background: url("../assets/img/logos-cloud/cruz.png") center / contain no-repeat;
+}
 /* Responsive bloque 1 (Ysrael) */
 @media (max-width: 768px) {
+  /* Ministerios apilados: sin "+" entre ellos */
+  .logos-cloud__grid--ministerio .logos-cloud__item::after {
+    display: none !important;
+  }
   /* Cabecera +ensayos: escalar por ancho (la imagen lleva texto) sin deformar */
   .logos-cloud__ensayos {
     height: auto;
