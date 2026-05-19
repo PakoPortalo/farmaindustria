@@ -1160,19 +1160,24 @@ ul, ol {
 }
 /* Fix (Ysrael): photos pinned to the corners beside the scrolling title so
    they stay FULLY visible on desktop (the old -42vh/-28vh offsets pushed
-   them off-screen on tall/large monitors). Sized by viewport height so they
-   always fit. Even photos -> top-left, odd photos -> bottom-right. */
+   them off-screen on tall/large monitors). Sized by the SMALLER of a
+   height-based and a width-based value (min(vh, vw)) so they scale down on
+   small/narrow screens AND don't get lost on big monitors. Even photos ->
+   top-left, odd photos -> bottom-right. */
 .innovacion-stack__photo[data-i="0"], .innovacion-stack__photo[data-i="2"], .innovacion-stack__photo[data-i="4"] {
-  top: clamp(24px, 5vh, 72px);
-  left: 4vw;
-  width: auto;
-  height: clamp(340px, 64vh, 860px);
+  top: clamp(16px, 4vh, 56px);
+  left: 2vw;
+  /* Width is the lever: confined to the left side lane (<= ~24vw) so it never
+     enters the reserved central text column; also capped by viewport height
+     so it stays fully visible. Height follows from aspect-ratio. */
+  width: min(clamp(150px, 24vw, 440px), 62vh);
+  height: auto;
 }
 .innovacion-stack__photo[data-i="1"], .innovacion-stack__photo[data-i="3"], .innovacion-stack__photo[data-i="5"] {
-  bottom: clamp(24px, 5vh, 72px);
-  right: 4vw;
-  width: auto;
-  height: clamp(300px, 58vh, 760px);
+  bottom: clamp(16px, 4vh, 56px);
+  right: 2vw;
+  width: min(clamp(140px, 22vw, 400px), 56vh);
+  height: auto;
 }
 /* Desktop: deja que la imagen sobresalga del shape (overflow visible) — el shape mantiene
    su mask en la zona visible pero la imagen ya no queda recortada al bounding box. */
@@ -1187,7 +1192,11 @@ ul, ol {
      --offset-y        : desplazamiento vertical extra (px o %).
    Combinación típica: subir el zoom y luego mover con --offset-y/-x para encuadrar caras altas, etc. */
 @media (min-width: 769px) {
-  .innovacion-stack__photo[data-i="0"] img { --obj-x: 20%; --obj-y: 200px; --scale: 1; --offset-x: 0; --offset-y: 0; } /* foto-1 */
+  /* Fix (Ysrael): --obj-y was an absolute 200px tuned for the old smaller box;
+     after the desktop resize it cropped the top of foto-1, and px object-position
+     with object-fit:cover renders inconsistently across engines (cut in Firefox).
+     Use a percentage like every other photo so it's cross-browser stable. */
+  .innovacion-stack__photo[data-i="0"] img { --obj-x: 20%; --obj-y: 50%; --scale: 1; --offset-x: 0; --offset-y: 0; } /* foto-1 */
   .innovacion-stack__photo[data-i="1"] img { --obj-x: 50%; --obj-y: 50%; --scale: 1; --offset-x: 0; --offset-y: 0; } /* foto-2 */
   .innovacion-stack__photo[data-i="2"] img { --obj-x: 50%; --obj-y: 50%; --scale: 1; --offset-x: 0; --offset-y: 0; } /* foto-3 */
   .innovacion-stack__photo[data-i="3"] img { --obj-x: 50%; --obj-y: 50%; --scale: 1; --offset-x: 0; --offset-y: 0; } /* foto-4 */
