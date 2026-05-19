@@ -1187,7 +1187,11 @@ ul, ol {
      --offset-y        : desplazamiento vertical extra (px o %).
    Combinación típica: subir el zoom y luego mover con --offset-y/-x para encuadrar caras altas, etc. */
 @media (min-width: 769px) {
-  .innovacion-stack__photo[data-i="0"] img { --obj-x: 20%; --obj-y: 200px; --scale: 1; --offset-x: 0; --offset-y: 0; } /* foto-1 */
+  /* Fix (Ysrael): --obj-y was an absolute 200px tuned for the old smaller box;
+     after the desktop resize it cropped the top of foto-1, and px object-position
+     with object-fit:cover renders inconsistently across engines (cut in Firefox).
+     Use a percentage like every other photo so it's cross-browser stable. */
+  .innovacion-stack__photo[data-i="0"] img { --obj-x: 20%; --obj-y: 50%; --scale: 1; --offset-x: 0; --offset-y: 0; } /* foto-1 */
   .innovacion-stack__photo[data-i="1"] img { --obj-x: 50%; --obj-y: 50%; --scale: 1; --offset-x: 0; --offset-y: 0; } /* foto-2 */
   .innovacion-stack__photo[data-i="2"] img { --obj-x: 50%; --obj-y: 50%; --scale: 1; --offset-x: 0; --offset-y: 0; } /* foto-3 */
   .innovacion-stack__photo[data-i="3"] img { --obj-x: 50%; --obj-y: 50%; --scale: 1; --offset-x: 0; --offset-y: 0; } /* foto-4 */
