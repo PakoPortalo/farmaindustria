@@ -400,16 +400,16 @@ ul, ol {
     animation: none;
   }
 }
-.fondo-bolas--verde {
-  background: #7ecd93;
+.fondo-bolas--limon {
+  background: #FBFE61;
 }
-.fondo-bolas--verde .fondo-bolas__gradient {
-  background: radial-gradient(ellipse 75% 65% at 71% 39%, #87daa1 0%, #c2ead5 50%, #8edaa5 100%), linear-gradient(104.89deg, #84d59c 13.23%, #c5e9d2 30.2%, #92d8a7 76.51%);
+.fondo-bolas--limon .fondo-bolas__gradient {
+  background: #FBFE61;
 }
-.fondo-bolas--verde .fondo-bolas__bola {
-  background: #6acbf0;
+.fondo-bolas--limon .fondo-bolas__bola {
+  background: #B9FF94;
 }
-.fondo-bolas--verde .fondo-bolas__mask {
+.fondo-bolas--limon .fondo-bolas__mask {
   opacity: 0.9;
 }
 
@@ -2133,7 +2133,6 @@ ul, ol {
   font-size: clamp(0.88rem, 1.25vw, 18px);
   line-height: 1.4;
   letter-spacing: 0;
-  text-transform: uppercase;
   color: #000;
 }
 @media (max-width: 768px) {
@@ -2508,7 +2507,7 @@ ul, ol {
     width: clamp(72px, calc(112.917 / 375 * 100vw), 112.917px);
     height: clamp(72px, calc(112.917 / 375 * 100vw), 112.917px);
   }
-  .fondo-bolas--verde .fondo-bolas__bola {
+  .fondo-bolas--limon .fondo-bolas__bola {
     width: clamp(64px, calc(100.524 / 375 * 100vw), 100.524px);
     height: clamp(64px, calc(100.524 / 375 * 100vw), 100.524px);
   }
