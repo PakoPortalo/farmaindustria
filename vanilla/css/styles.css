@@ -1641,18 +1641,14 @@ ul, ol {
   transform: translate(-50%, -50%) scale(1.08);
 }
 .entenderlo__photo--left {
-  --shift-y: -115px;
-  --shift-x: 70px;
-}
-.entenderlo__photo--center {
-  --tilt: 12deg;
-  --shift-y: -10px;
-  --shift-x: 0px;
+  --tilt: -20deg;
+  --shift-y: -40px;
+  --shift-x: -110px;
 }
 .entenderlo__photo--right {
   --tilt: 6.51deg;
-  --shift-y: -90px;
-  --shift-x: -70px;
+  --shift-y: -30px;
+  --shift-x: 110px;
 }
 .entenderlo.is-open .entenderlo__cta {
   opacity: 0;
@@ -1663,6 +1659,7 @@ ul, ol {
   opacity: 1;
   height: auto;
   pointer-events: auto;
+  margin-bottom: clamp(96px, 12vw, 220px);
 }
 .entenderlo.is-open .entenderlo__photo {
   opacity: 1;
@@ -1671,11 +1668,8 @@ ul, ol {
 .entenderlo.is-open .entenderlo__photo--left {
   transition-delay: 0s;
 }
-.entenderlo.is-open .entenderlo__photo--center {
-  transition-delay: 0.05s;
-}
 .entenderlo.is-open .entenderlo__photo--right {
-  transition-delay: 0.1s;
+  transition-delay: 0.08s;
 }
 @media (prefers-reduced-motion: reduce) {
   .entenderlo__cta-ring {
