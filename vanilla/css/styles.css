@@ -1149,19 +1149,16 @@ ul, ol {
   height: 100%;
   object-fit: cover;
   display: block;
-  transform: translateY(var(--shift-y, 0));
 }
 .innovacion-stack__photo[data-i="0"], .innovacion-stack__photo[data-i="2"], .innovacion-stack__photo[data-i="4"] {
   top: -42vh;
   left: 4vw;
   width: clamp(320px, 36vw, 540px);
-  --shift-y: 12%;
 }
 .innovacion-stack__photo[data-i="1"], .innovacion-stack__photo[data-i="3"], .innovacion-stack__photo[data-i="5"] {
   bottom: -28vh;
   right: 4vw;
   width: clamp(280px, 32vw, 480px);
-  --shift-y: 0%;
 }
 .innovacion-stack__photo.is-active {
   opacity: 1;
@@ -1273,45 +1270,60 @@ ul, ol {
   .innovacion-stack__photo {
     transition: none;
   }
-  .innovacion-stack__photo[data-i="0"] {
-    opacity: 1;
+  /* Shape grande (arriba-izq): fotos pares 0, 2, 4 */
+  .innovacion-stack__photo[data-i="0"],
+  .innovacion-stack__photo[data-i="2"],
+  .innovacion-stack__photo[data-i="4"] {
     top: -32px;
     left: 0;
     bottom: auto;
     right: auto;
     width: clamp(260px, calc(310 / 375 * 100vw), 310px);
     aspect-ratio: 310/340;
-    --shift-y: 0%;
     filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.22));
     transition: opacity 0.45s ease;
   }
-  .innovacion-stack__photo[data-i="1"] {
-    opacity: 0.45;
+  /* Shape pequeño (abajo-der): fotos impares 1, 3, 5 */
+  .innovacion-stack__photo[data-i="1"],
+  .innovacion-stack__photo[data-i="3"],
+  .innovacion-stack__photo[data-i="5"] {
     bottom: 0;
     right: 0;
     top: auto;
     left: auto;
     width: clamp(220px, calc(280 / 375 * 100vw), 280px);
     aspect-ratio: 280/320;
-    --shift-y: 0%;
     filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.22));
     transition: opacity 0.45s ease;
   }
-  .innovacion-stack__sticky.is-state-odd .innovacion-stack__photo[data-i="0"] {
-    opacity: 0.45;
-  }
-  .innovacion-stack__sticky.is-state-odd .innovacion-stack__photo[data-i="1"] {
-    opacity: 1;
-  }
+  /* Opacities default = state 0 (fallback si JS no añade is-state-N) */
+  .innovacion-stack__photo[data-i="0"] { opacity: 1; }
+  .innovacion-stack__photo[data-i="1"] { opacity: 0.45; }
   .innovacion-stack__photo[data-i="2"],
   .innovacion-stack__photo[data-i="3"],
   .innovacion-stack__photo[data-i="4"],
-  .innovacion-stack__photo[data-i="5"] {
-    display: none;
-  }
-  .innovacion-stack__photo img {
-    transform: none;
-  }
+  .innovacion-stack__photo[data-i="5"] { opacity: 0; }
+  /* Ciclo por state */
+  .innovacion-stack__sticky.is-state-1 .innovacion-stack__photo[data-i="0"] { opacity: 0.45; }
+  .innovacion-stack__sticky.is-state-1 .innovacion-stack__photo[data-i="1"] { opacity: 1; }
+  .innovacion-stack__sticky.is-state-2 .innovacion-stack__photo[data-i="0"] { opacity: 0; }
+  .innovacion-stack__sticky.is-state-2 .innovacion-stack__photo[data-i="1"] { opacity: 0.45; }
+  .innovacion-stack__sticky.is-state-2 .innovacion-stack__photo[data-i="2"] { opacity: 1; }
+  .innovacion-stack__sticky.is-state-3 .innovacion-stack__photo[data-i="0"] { opacity: 0; }
+  .innovacion-stack__sticky.is-state-3 .innovacion-stack__photo[data-i="1"] { opacity: 0; }
+  .innovacion-stack__sticky.is-state-3 .innovacion-stack__photo[data-i="2"] { opacity: 0.45; }
+  .innovacion-stack__sticky.is-state-3 .innovacion-stack__photo[data-i="3"] { opacity: 1; }
+  .innovacion-stack__sticky.is-state-4 .innovacion-stack__photo[data-i="0"] { opacity: 0; }
+  .innovacion-stack__sticky.is-state-4 .innovacion-stack__photo[data-i="1"] { opacity: 0; }
+  .innovacion-stack__sticky.is-state-4 .innovacion-stack__photo[data-i="2"] { opacity: 0; }
+  .innovacion-stack__sticky.is-state-4 .innovacion-stack__photo[data-i="3"] { opacity: 0.45; }
+  .innovacion-stack__sticky.is-state-4 .innovacion-stack__photo[data-i="4"] { opacity: 1; }
+  .innovacion-stack__sticky.is-state-5 .innovacion-stack__photo[data-i="0"] { opacity: 0; }
+  .innovacion-stack__sticky.is-state-5 .innovacion-stack__photo[data-i="1"] { opacity: 0; }
+  .innovacion-stack__sticky.is-state-5 .innovacion-stack__photo[data-i="2"] { opacity: 0; }
+  .innovacion-stack__sticky.is-state-5 .innovacion-stack__photo[data-i="3"] { opacity: 0; }
+  .innovacion-stack__sticky.is-state-5 .innovacion-stack__photo[data-i="4"] { opacity: 0.45; }
+  .innovacion-stack__sticky.is-state-5 .innovacion-stack__photo[data-i="5"] { opacity: 1; }
   .innovacion-stack__center {
     display: flex;
     flex-direction: column;
