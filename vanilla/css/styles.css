@@ -2413,6 +2413,42 @@ ul, ol {
     display: none;
   }
 }
+/* Ministerio: SIN separador "+" (eran banners; el "+" base de 80px hacia que
+   unas cruces se vieran mas grandes que las de asociaciones). */
+.logos-cloud__grid--ministerio .logos-cloud__item::after {
+  display: none !important;
+}
+/* Responsive bloque 1 (Ysrael) */
+@media (max-width: 768px) {
+  /* Cabecera +ensayos: escalar por ancho (la imagen lleva texto) sin deformar */
+  .logos-cloud__ensayos {
+    height: auto;
+    width: min(90%, 520px);
+    margin-bottom: clamp(28px, 8vw, 48px);
+  }
+  /* Ministerios uno debajo de otro y mas grandes */
+  .logos-cloud__grid--ministerio {
+    grid-template-columns: 1fr;
+    row-gap: clamp(28px, 7vw, 48px);
+    margin-bottom: clamp(40px, 10vw, 64px);
+  }
+  .logos-cloud__logo--ministerio {
+    height: auto;
+    width: min(88%, 460px);
+  }
+}
+@media (max-width: 560px) {
+  /* Asociaciones: 2 columnas, "+" solo entre ambas (nunca al final de fila) */
+  .logos-cloud__grid--asociacion {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(2n)):not(:last-child)::after {
+    display: block;
+  }
+  .logos-cloud__grid--asociacion .logos-cloud__item:nth-child(2n)::after {
+    display: none;
+  }
+}
 
 /* ===== Footer legal (mini) ===== */
 .site-footer {
