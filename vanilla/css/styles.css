@@ -1158,15 +1158,21 @@ ul, ol {
   transform: translate(var(--offset-x, 0), var(--offset-y, 0)) scale(var(--scale, 1));
   transform-origin: center center;
 }
+/* Fix (Ysrael): photos pinned to the corners beside the scrolling title so
+   they stay FULLY visible on desktop (the old -42vh/-28vh offsets pushed
+   them off-screen on tall/large monitors). Sized by viewport height so they
+   always fit. Even photos -> top-left, odd photos -> bottom-right. */
 .innovacion-stack__photo[data-i="0"], .innovacion-stack__photo[data-i="2"], .innovacion-stack__photo[data-i="4"] {
-  top: -42vh;
+  top: clamp(24px, 5vh, 72px);
   left: 4vw;
-  width: clamp(320px, 36vw, 540px);
+  width: auto;
+  height: clamp(340px, 64vh, 860px);
 }
 .innovacion-stack__photo[data-i="1"], .innovacion-stack__photo[data-i="3"], .innovacion-stack__photo[data-i="5"] {
-  bottom: -28vh;
+  bottom: clamp(24px, 5vh, 72px);
   right: 4vw;
-  width: clamp(280px, 32vw, 480px);
+  width: auto;
+  height: clamp(300px, 58vh, 760px);
 }
 /* Desktop: deja que la imagen sobresalga del shape (overflow visible) — el shape mantiene
    su mask en la zona visible pero la imagen ya no queda recortada al bounding box. */
