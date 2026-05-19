@@ -1447,10 +1447,11 @@ ul, ol {
   }
 }
 .entenderlo__smiley {
-  width: 6.32vw;
+  width: 11vw;
   height: auto;
-  max-width: 91px;
-  margin: 0 0 2.57vw;
+  max-width: 160px;
+  margin: 0 auto 2.57vw;
+  display: block;
 }
 @media (min-width: 1440px) {
   .entenderlo__smiley {
