@@ -1078,6 +1078,7 @@ ul, ol {
   .cinta-ensayos__logo {
     width: 622px;
     height: 120px;
+    transform: translateY(25px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
