@@ -1165,16 +1165,19 @@ ul, ol {
    small/narrow screens AND don't get lost on big monitors. Even photos ->
    top-left, odd photos -> bottom-right. */
 .innovacion-stack__photo[data-i="0"], .innovacion-stack__photo[data-i="2"], .innovacion-stack__photo[data-i="4"] {
-  top: clamp(24px, 5vh, 72px);
-  left: 4vw;
-  width: auto;
-  height: clamp(220px, min(60vh, 46vw), 820px);
+  top: clamp(16px, 4vh, 56px);
+  left: 2vw;
+  /* Width is the lever: confined to the left side lane (<= ~24vw) so it never
+     enters the reserved central text column; also capped by viewport height
+     so it stays fully visible. Height follows from aspect-ratio. */
+  width: min(clamp(150px, 24vw, 440px), 62vh);
+  height: auto;
 }
 .innovacion-stack__photo[data-i="1"], .innovacion-stack__photo[data-i="3"], .innovacion-stack__photo[data-i="5"] {
-  bottom: clamp(24px, 5vh, 72px);
-  right: 4vw;
-  width: auto;
-  height: clamp(200px, min(54vh, 41vw), 720px);
+  bottom: clamp(16px, 4vh, 56px);
+  right: 2vw;
+  width: min(clamp(140px, 22vw, 400px), 56vh);
+  height: auto;
 }
 /* Desktop: deja que la imagen sobresalga del shape (overflow visible) — el shape mantiene
    su mask en la zona visible pero la imagen ya no queda recortada al bounding box. */
