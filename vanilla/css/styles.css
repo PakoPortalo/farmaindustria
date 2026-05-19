@@ -2390,6 +2390,10 @@ ul, ol {
   grid-template-columns: repeat(3, 1fr) !important;
   row-gap: clamp(36px, 4.5vw, 64px);
 }
+/* Ysrael: asociaciones un poco más grandes que el resto (labs siguen a 72px) */
+.logos-cloud__grid--asociacion .logos-cloud__logo {
+  height: clamp(84px, 9vw, 108px);
+}
 .logos-cloud__grid--asociacion .logos-cloud__item::after {
   display: none !important;
 }
