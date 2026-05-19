@@ -2409,46 +2409,50 @@ ul, ol {
   transform: translateY(-100%);
 }
 @media (max-width: 768px) {
-  /* Bloque 22 Figma — Card blanca pre-footer: bg #fff, border-radius 42px, contenido apilado.
-     El gradiente azul-lila se mueve al wrapper .home-footer-stack (ya está) y la card queda blanca. */
+  /* Móvil: mantiene gradient violeta del desktop, sin card blanca, padding compacto. */
   .home-footer-stack > .banners--contacto {
-    padding-inline: clamp(12px, calc(16 / 375 * 100vw), 16px);
-    padding-block: clamp(24px, calc(40 / 375 * 100vw), 40px);
+    padding-inline: 0;
+    padding-block: 0;
   }
   .banners--contacto .banners__inner {
-    padding: clamp(28px, calc(40 / 375 * 100vw), 40px) clamp(20px, calc(28 / 375 * 100vw), 28px);
-    border-radius: clamp(32px, calc(42 / 375 * 100vw), 42px);
-    background: #fff;
-    min-height: clamp(420px, calc(599 / 375 * 100vw), 599px);
+    padding: clamp(20px, calc(24 / 375 * 100vw), 28px) clamp(20px, calc(24 / 375 * 100vw), 28px);
+    border-radius: 0;
+    background: linear-gradient(180deg, #cbc7ff 0%, #b7c9fd 100%);
+    min-height: 0;
   }
   .banners--contacto .banners__marquee-text {
-    color: #1a1a1a;
-    opacity: 0.08;
-    font-size: clamp(48px, calc(72 / 375 * 100vw), 96px);
-    letter-spacing: -3px;
+    color: #fff;
+    opacity: 0.12;
+    font-size: clamp(56px, calc(72 / 375 * 100vw), 84px);
+    letter-spacing: -2.5px;
+  }
+  .banners--contacto .banners__marquee-track {
+    animation-duration: 22s;
+    gap: 12px;
   }
   .banners--contacto .banners__content {
     flex-direction: column;
     align-items: flex-start;
-    gap: clamp(20px, calc(28 / 375 * 100vw), 28px);
+    gap: clamp(20px, calc(24 / 375 * 100vw), 28px);
   }
   .banners--contacto .banners__lead {
     width: 100%;
-    color: #000;
+    color: #fff;
     font-family: "Switzer", system-ui, -apple-system, sans-serif;
     font-weight: 400;
-    font-size: clamp(18px, calc(22 / 375 * 100vw), 24px);
+    font-size: clamp(20px, calc(22 / 375 * 100vw), 24px);
     line-height: 1.1;
     letter-spacing: -0.02em;
   }
   .banners--contacto .banners__cta {
-    border-color: #1a1a1a;
-    background: rgba(19, 5, 68, 0.06);
-    color: #1a1a1a;
+    gap: 12px;
+    padding: clamp(14px, calc(18 / 375 * 100vw), 20px) clamp(20px, calc(24 / 375 * 100vw), 26px);
+    font-size: clamp(13px, calc(14 / 375 * 100vw), 15px);
+    border-width: 1.4px;
   }
-  .banners--contacto .banners__cta:hover,
-  .banners--contacto .banners__cta:focus-visible {
-    background: rgba(19, 5, 68, 0.12);
+  .banners--contacto .banners__cta-arrow {
+    width: clamp(18px, calc(20 / 375 * 100vw), 22px);
+    height: clamp(18px, calc(20 / 375 * 100vw), 22px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2534,9 +2538,9 @@ ul, ol {
     margin-top: 0;
   }
 
-  /* Bloque 22 Figma — la card pre-footer va sobre fondo gradiente azul-lila del wrapper */
+  /* El banner pega directo con el módulo anterior, sin padding-top en el wrapper. */
   .home-footer-stack {
-    padding-block: clamp(16px, calc(24 / 375 * 100vw), 24px) 0;
+    padding-block: 0;
   }
 }
 
