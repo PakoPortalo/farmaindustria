@@ -2345,9 +2345,16 @@ ul, ol {
     display: none;
   }
 }
-/* Bloques de logos (Ysrael): intro + filete + Ministerio/Asociacion.
-   Reutilizan .logos-cloud__grid/__item/__logo; con 3 items el separador "+"
-   base ya queda entre los tres (tras item 1 y 2, ninguno tras el ultimo). */
+/* Bloques de logos (Ysrael): cabecera +ensayos + intro + filete +
+   Ministerio (3, grandes) + Asociacion (20, 5 columnas) + "Impulsada por".
+   Reutilizan .logos-cloud__grid/__item/__logo. Ministerio (3 items) usa el
+   separador "+" base. Asociacion (5 col) lleva separador propio. */
+.logos-cloud__ensayos {
+  display: block;
+  width: auto;
+  height: clamp(40px, 4.5vw, 64px);
+  margin: 0 auto clamp(20px, 2.4vw, 36px);
+}
 .logos-cloud__intro {
   margin: 0 0 clamp(36px, 4.5vw, 64px);
   font-family: "Switzer", system-ui, -apple-system, sans-serif;
@@ -2364,16 +2371,45 @@ ul, ol {
   background: #d6d6d6;
   margin: clamp(56px, 7vw, 104px) auto;
 }
-.logos-cloud__grid--ministerio,
-.logos-cloud__grid--asociacion {
-  grid-template-columns: repeat(3, 1fr);
-}
 .logos-cloud__grid--ministerio {
-  margin-bottom: clamp(40px, 5vw, 72px);
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: clamp(48px, 6vw, 88px);
 }
 /* Ministerio logos -> bigger than the rest, per the brief */
 .logos-cloud__logo--ministerio {
-  height: clamp(72px, 8vw, 132px);
+  height: clamp(64px, 7vw, 116px);
+}
+/* Asociaciones: 5 columnas (desktop) con separador "+" propio
+   (tras cada item salvo fin de fila y el ultimo). Anula el separador base
+   que usa 6n y no encaja en 5 columnas. */
+.logos-cloud__grid--asociacion {
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: clamp(36px, 4.5vw, 64px);
+}
+.logos-cloud__grid--asociacion .logos-cloud__item::after {
+  display: none;
+}
+.logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(5n)):not(:last-child)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: clamp(28px, 3.6vw, 56px);
+  height: clamp(28px, 3.6vw, 56px);
+  transform: translate(calc(50% + var(--logos-col-gap) / 2), -50%);
+  background: url("../assets/img/logos-cloud/cruz.png") center / contain no-repeat;
+}
+@media (max-width: 1024px) {
+  .logos-cloud__grid--asociacion {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(3n)):not(:last-child)::after {
+    display: block;
+  }
+  .logos-cloud__grid--asociacion .logos-cloud__item:nth-child(3n)::after {
+    display: none;
+  }
 }
 
 /* ===== Footer legal (mini) ===== */
