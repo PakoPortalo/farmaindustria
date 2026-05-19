@@ -2345,6 +2345,36 @@ ul, ol {
     display: none;
   }
 }
+/* Bloques de logos (Ysrael): intro + filete + Ministerio/Asociacion.
+   Reutilizan .logos-cloud__grid/__item/__logo; con 3 items el separador "+"
+   base ya queda entre los tres (tras item 1 y 2, ninguno tras el ultimo). */
+.logos-cloud__intro {
+  margin: 0 0 clamp(36px, 4.5vw, 64px);
+  font-family: "Switzer", system-ui, -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: clamp(20px, 2.36vw, 34px);
+  line-height: 1.2;
+  color: #1a1a1a;
+  text-align: center;
+}
+.logos-cloud__filete {
+  width: clamp(120px, 22vw, 260px);
+  height: 2px;
+  border: 0;
+  background: #d6d6d6;
+  margin: clamp(56px, 7vw, 104px) auto;
+}
+.logos-cloud__grid--ministerio,
+.logos-cloud__grid--asociacion {
+  grid-template-columns: repeat(3, 1fr);
+}
+.logos-cloud__grid--ministerio {
+  margin-bottom: clamp(40px, 5vw, 72px);
+}
+/* Ministerio logos -> bigger than the rest, per the brief */
+.logos-cloud__logo--ministerio {
+  height: clamp(72px, 8vw, 132px);
+}
 
 /* ===== Footer legal (mini) ===== */
 .site-footer {
