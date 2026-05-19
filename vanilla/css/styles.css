@@ -2428,9 +2428,12 @@ ul, ol {
 }
 /* Responsive bloque 1 (Ysrael) */
 @media (max-width: 768px) {
-  /* Ministerios apilados: sin "+" entre ellos */
+  /* Ministerios apilados en movil: sin "+" (mismo selector/especificidad que
+     la regla que lo muestra en desktop, para ganarle al !important). */
+  .logos-cloud__grid--ministerio .logos-cloud__item:not(:last-child)::after,
   .logos-cloud__grid--ministerio .logos-cloud__item::after {
     display: none !important;
+    content: none !important;
   }
   /* Cabecera +ensayos: escalar por ancho (la imagen lleva texto) sin deformar */
   .logos-cloud__ensayos {
