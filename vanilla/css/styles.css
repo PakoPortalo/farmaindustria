@@ -2352,8 +2352,10 @@ ul, ol {
 .logos-cloud__ensayos {
   display: block;
   width: auto;
-  height: clamp(40px, 4.5vw, 64px);
-  margin: 0 auto clamp(20px, 2.4vw, 36px);
+  max-width: 100%;
+  /* Ysrael: cabecera +ensayos más grande (la imagen incluye también el texto). */
+  height: clamp(96px, 12vw, 200px);
+  margin: 0 auto clamp(40px, 5vw, 80px);
 }
 .logos-cloud__intro {
   margin: 0 0 clamp(36px, 4.5vw, 64px);
