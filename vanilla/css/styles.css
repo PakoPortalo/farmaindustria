@@ -2243,6 +2243,14 @@ ul, ol {
   }
 }
 
+/* ============================================================
+   logos-cloud — member-company logos grid
+   Reworked by Ysrael (T3): replaced the single monolithic
+   farmaindustria-logos.png with individual <img> logos in a
+   responsive grid. The "+" separator (cruz.png) is drawn with
+   a CSS pseudo-element so it is purely decorative and is hidden
+   when the grid reflows on tablet/mobile.
+   ============================================================ */
 .logos-cloud {
   position: relative;
   width: 100%;
@@ -2252,19 +2260,57 @@ ul, ol {
   width: 100%;
   max-width: 1440px;
   margin-inline: auto;
-  aspect-ratio: 1440 / 520;
-  overflow: hidden;
+  padding: clamp(48px, 6.94vw, 100px) clamp(20px, 5.56vw, 80px);
 }
-.logos-cloud__img {
-  width: 100%;
-  height: 100%;
+.logos-cloud__brand {
   display: block;
-  object-fit: cover;
-  object-position: center;
+  width: auto;
+  height: 64px;
+  margin: 0 auto 72px;
 }
-@media (max-width: 768px) {
-  .logos-cloud__inner {
-    aspect-ratio: 375 / 180;
+.logos-cloud__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  --logos-col-gap: 20px;
+  column-gap: var(--logos-col-gap);
+  row-gap: 56px;
+  align-items: center;
+}
+.logos-cloud__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logos-cloud__logo {
+  max-width: 100%;
+  width: auto;
+  height: 72px;
+  object-fit: contain;
+}
+/* "+" separator between columns (not after the last in a row, not the last item) */
+.logos-cloud__item:not(:nth-child(6n)):not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  transform: translate(calc(50% + var(--logos-col-gap) / 2), -50%);
+  background: url("../assets/img/logos-cloud/cruz.png") center / contain no-repeat;
+}
+@media (max-width: 1024px) {
+  .logos-cloud__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  /* 3-column layout (tablet + mobile): keep the "+" between columns,
+     but remove it at the end of every row (each 3rd item) so it
+     doesn't dangle off the edge. */
+  .logos-cloud__item:nth-child(3n)::after {
+    display: none;
   }
 }
 
