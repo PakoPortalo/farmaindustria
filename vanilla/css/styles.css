@@ -2419,23 +2419,31 @@ ul, ol {
 .logos-cloud__grid--asociacion .logos-cloud__logo {
   height: clamp(64px, 6vw, 92px);
 }
+/* Asociaciones: definimos el ESTILO del "+" UNA sola vez en todos los items
+   (con tamano y bg consistente) y solo togglamos `display` por breakpoint.
+   Asi nunca se filtra el "+" base de 80px usado en labs. */
 .logos-cloud__grid--asociacion .logos-cloud__item::after {
-  display: none !important;
-}
-.logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(5n)):not(:last-child)::after {
   content: "";
-  display: block !important;
   position: absolute;
   top: 50%;
   right: 0;
-  width: clamp(22px, 3vw, 44px);
-  height: clamp(22px, 3vw, 44px);
+  width: clamp(22px, 3vw, 44px) !important;
+  height: clamp(22px, 3vw, 44px) !important;
   transform: translate(calc(50% + var(--logos-col-gap) / 2), -50%);
-  background: url("../assets/img/logos-cloud/cruz.png") center / contain no-repeat;
+  background: url("../assets/img/logos-cloud/cruz.png") center / contain no-repeat !important;
+  display: none !important;
+}
+/* Show "+" SOLO en DESKTOP (5 cols): tras cada item salvo 5n y el ultimo.
+   Encerrado en min-width:1025px para que NO sangre a los breakpoints inferiores
+   (si no, su !important+especificidad ganaba a los hide del movil). */
+@media (min-width: 1025px) {
+  .logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(5n)):not(:last-child)::after {
+    display: block !important;
+  }
 }
 
 /* Responsive bloque 1 (Ysrael) */
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (min-width: 561px) {
   /* Asociaciones: 3 cols en tablet (mas compacto) */
   .logos-cloud__grid--asociacion {
     grid-template-columns: repeat(3, 1fr) !important;
@@ -2443,10 +2451,6 @@ ul, ol {
   .logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(3n)):not(:last-child)::after {
     display: block !important;
   }
-  .logos-cloud__grid--asociacion .logos-cloud__item:nth-child(3n)::after {
-    display: none !important;
-  }
-  /* Ministerio: en tablet sigue 3+2 hasta que entre movil */
 }
 @media (max-width: 768px) {
   /* Cabecera +ensayos: por ancho, sin deformar */
