@@ -2354,12 +2354,13 @@ ul, ol {
   display: block;
   width: auto;
   max-width: 100%;
-  /* Ysrael: cabecera +ensayos más grande (la imagen incluye también el texto). */
-  height: clamp(96px, 12vw, 200px);
-  margin: 0 auto clamp(40px, 5vw, 80px);
+  /* Ysrael: cabecera +ensayos (la imagen incluye tambien el texto). */
+  height: clamp(80px, 10vw, 160px);
+  margin: 0 auto clamp(24px, 3vw, 48px);
 }
 .logos-cloud__intro {
-  margin: 0 0 clamp(36px, 4.5vw, 64px);
+  /* Ysrael: espacios mas apretados */
+  margin: 0 0 clamp(20px, 2.6vw, 40px);
   font-family: "Switzer", system-ui, -apple-system, sans-serif;
   font-weight: 500;
   font-size: clamp(20px, 2.36vw, 34px);
@@ -2372,50 +2373,32 @@ ul, ol {
   height: 2px;
   border: 0;
   background: #d6d6d6;
-  margin: clamp(56px, 7vw, 104px) auto;
+  /* Ysrael: filete con menos aire arriba/abajo */
+  margin: clamp(32px, 4vw, 64px) auto;
 }
+/* Ministerio (5 banners institucionales): desktop 3 arriba + 2 abajo
+   (centrados via flex+wrap). Movil: apilados 1 por fila, sin "+". */
 .logos-cloud__grid--ministerio {
-  grid-template-columns: repeat(4, 1fr);
-  margin-bottom: clamp(48px, 6vw, 88px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: var(--logos-col-gap);
+  row-gap: clamp(20px, 2.5vw, 40px);
+  margin-bottom: clamp(28px, 4vw, 56px);
 }
-/* Ministerio logos -> bigger than the rest, per the brief (4 banners en fila) */
+.logos-cloud__grid--ministerio .logos-cloud__item {
+  flex: 0 0 calc((100% - 2 * var(--logos-col-gap)) / 3);
+  max-width: calc((100% - 2 * var(--logos-col-gap)) / 3);
+}
 .logos-cloud__logo--ministerio {
-  height: clamp(52px, 5.5vw, 96px);
+  height: clamp(48px, 5vw, 88px);
 }
-/* Asociaciones: SIEMPRE 3 columnas, un unico separador "+" consistente.
-   Nunca tras el 3er item de la fila (3n) ni el ultimo -> sin "+" colgando.
-   !important para ganar al separador base de 80px de forma robusta y que
-   TODOS los "+" de asociaciones tengan el mismo tamano. */
-.logos-cloud__grid--asociacion {
-  grid-template-columns: repeat(3, 1fr) !important;
-  row-gap: clamp(36px, 4.5vw, 64px);
-}
-/* Ysrael: asociaciones un poco más grandes que el resto (labs siguen a 72px) */
-.logos-cloud__grid--asociacion .logos-cloud__logo {
-  height: clamp(84px, 9vw, 108px);
-}
-.logos-cloud__grid--asociacion .logos-cloud__item::after {
-  display: none !important;
-}
-.logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(3n)):not(:last-child)::after {
-  content: "";
-  display: block !important;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  width: clamp(22px, 3vw, 44px);
-  height: clamp(22px, 3vw, 44px);
-  transform: translate(calc(50% + var(--logos-col-gap) / 2), -50%);
-  background: url("../assets/img/logos-cloud/cruz.png") center / contain no-repeat;
-}
-/* Ministerio: SIN separador "+" (eran banners; el "+" base de 80px hacia que
-   unas cruces se vieran mas grandes que las de asociaciones). */
-/* Ministerio: "+" entre los 3 (desktop), mismo tamano que asociaciones.
-   Anula el separador base de 80px. En movil se ocultan (apilados). */
+/* "+" entre ministerios (layout 3+2): tras 1,2,4 (no tras 3 fin de fila1 ni 5/ultimo) */
 .logos-cloud__grid--ministerio .logos-cloud__item::after {
   display: none !important;
 }
-.logos-cloud__grid--ministerio .logos-cloud__item:not(:last-child)::after {
+.logos-cloud__grid--ministerio .logos-cloud__item:not(:nth-child(3)):not(:last-child)::after {
   content: "";
   display: block !important;
   position: absolute;
@@ -2426,30 +2409,88 @@ ul, ol {
   transform: translate(calc(50% + var(--logos-col-gap) / 2), -50%);
   background: url("../assets/img/logos-cloud/cruz.png") center / contain no-repeat;
 }
-/* Responsive bloque 1 (Ysrael) */
-@media (max-width: 768px) {
-  /* Ministerios apilados en movil: sin "+" (mismo selector/especificidad que
-     la regla que lo muestra en desktop, para ganarle al !important). */
-  .logos-cloud__grid--ministerio .logos-cloud__item:not(:last-child)::after,
-  .logos-cloud__grid--ministerio .logos-cloud__item::after {
-    display: none !important;
-    content: none !important;
+
+/* Asociaciones: 5 columnas en desktop (como labs), 30 items = 6 filas limpias.
+   "+" propio, mismo tamano, nunca tras 5n ni el ultimo. */
+.logos-cloud__grid--asociacion {
+  grid-template-columns: repeat(5, 1fr) !important;
+  row-gap: clamp(28px, 3.5vw, 52px);
+}
+.logos-cloud__grid--asociacion .logos-cloud__logo {
+  height: clamp(64px, 6vw, 92px);
+}
+/* Asociaciones: definimos el ESTILO del "+" UNA sola vez en todos los items
+   (con tamano y bg consistente) y solo togglamos `display` por breakpoint.
+   Asi nunca se filtra el "+" base de 80px usado en labs. */
+.logos-cloud__grid--asociacion .logos-cloud__item::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: clamp(22px, 3vw, 44px) !important;
+  height: clamp(22px, 3vw, 44px) !important;
+  transform: translate(calc(50% + var(--logos-col-gap) / 2), -50%);
+  background: url("../assets/img/logos-cloud/cruz.png") center / contain no-repeat !important;
+  display: none !important;
+}
+/* Show "+" SOLO en DESKTOP (5 cols): tras cada item salvo 5n y el ultimo.
+   Encerrado en min-width:1025px para que NO sangre a los breakpoints inferiores
+   (si no, su !important+especificidad ganaba a los hide del movil). */
+@media (min-width: 1025px) {
+  .logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(5n)):not(:last-child)::after {
+    display: block !important;
   }
-  /* Cabecera +ensayos: escalar por ancho (la imagen lleva texto) sin deformar */
+}
+
+/* Responsive bloque 1 (Ysrael) */
+@media (max-width: 1024px) and (min-width: 561px) {
+  /* Asociaciones: 3 cols en tablet (mas compacto) */
+  .logos-cloud__grid--asociacion {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(3n)):not(:last-child)::after {
+    display: block !important;
+  }
+}
+@media (max-width: 768px) {
+  /* Cabecera +ensayos: por ancho, sin deformar */
   .logos-cloud__ensayos {
     height: auto;
     width: min(90%, 520px);
-    margin-bottom: clamp(28px, 8vw, 48px);
+    margin-bottom: clamp(20px, 6vw, 36px);
   }
-  /* Ministerios uno debajo de otro y mas grandes */
+  /* Ministerios apilados (1 por fila) */
   .logos-cloud__grid--ministerio {
-    grid-template-columns: 1fr;
-    row-gap: clamp(28px, 7vw, 48px);
-    margin-bottom: clamp(40px, 10vw, 64px);
+    flex-direction: column;
+    row-gap: clamp(20px, 5vw, 36px);
+    margin-bottom: clamp(28px, 7vw, 48px);
+  }
+  .logos-cloud__grid--ministerio .logos-cloud__item {
+    flex: 0 0 auto;
+    max-width: 100%;
+    width: 100%;
   }
   .logos-cloud__logo--ministerio {
     height: auto;
     width: min(88%, 460px);
+  }
+  /* Sin "+" en ministerios apilados (alta especificidad) */
+  .logos-cloud__grid--ministerio .logos-cloud__item:not(:nth-child(3)):not(:last-child)::after,
+  .logos-cloud__grid--ministerio .logos-cloud__item::after {
+    display: none !important;
+    content: none !important;
+  }
+}
+@media (max-width: 560px) {
+  /* Asociaciones: 2 columnas en mobile estrecho */
+  .logos-cloud__grid--asociacion {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .logos-cloud__grid--asociacion .logos-cloud__item:not(:nth-child(2n)):not(:last-child)::after {
+    display: block !important;
+  }
+  .logos-cloud__grid--asociacion .logos-cloud__item:nth-child(2n)::after {
+    display: none !important;
   }
 }
 
